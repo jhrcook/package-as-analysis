@@ -1,0 +1,14 @@
+book_filename: "package-as-analysis"
+delete_merged_file: true
+new_session: yes
+
+rmd_files:
+    [
+        "index.Rmd"
+        
+        "Purpose.Rmd"
+        
+        "Getting Started.Rmd"
+        
+        "Framework.Rmd"
+    ]
