@@ -6,6 +6,7 @@ bookdown::gitbook:
         <li><a href="./">Package as Analysis</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/jhrcook/package-as-analysis" target="blank">Source</a><li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

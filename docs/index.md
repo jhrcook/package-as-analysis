@@ -1,7 +1,7 @@
 --- 
 title: "Package as Analysis"
 author: "Joshua H. Cook"
-url: 'https\://www.joshdoesathing.com'
+url: 'https\://jhrcook.github.io/package-as-analysis/.'
 github-repo: jhrcook/package-as-analysis
 twitter-handle: JoshDoesa
 cover-image: cover.png
