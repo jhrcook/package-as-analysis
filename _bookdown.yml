@@ -4,11 +4,11 @@ new_session: yes
 
 rmd_files:
     [
-        "index.Rmd"
+        "index.Rmd",
         
-        "Purpose.Rmd"
+        "Purpose.Rmd",
         
-        "Getting Started.Rmd"
+        "Getting-Started.Rmd",
         
-        "Framework.Rmd"
+        "Framework.Rmd",
     ]

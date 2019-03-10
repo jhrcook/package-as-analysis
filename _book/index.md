@@ -5,7 +5,7 @@ url: 'https\://www.joshdoesathing.com'
 github-repo: jhrcook/package-as-analysis
 twitter-handle: JoshDoesa
 cover-image: cover.png
-date: "`r Sys.Date()`"
+date: "2019-03-10"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
