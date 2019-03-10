@@ -14,7 +14,9 @@ link-citations: yes
 description: "This is a manual for how to conduct data science analysis using the standard R package framework."
 ---
 
-# Welcome {-} <img src="cover.png" width="250" height="366" align="right" alt="Cover image" />
+# Welcome {-}
+
+<img src="cover.png" width="250" height="366" align="right" alt="Cover image" />
 
 This is a manual on how to use the standard R package framework for data analysis. Though potentially more work, especially at the start, the purpose of using the R package framework is to maintain a clear and reproducible analysis. 
 
