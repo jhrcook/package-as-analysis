@@ -4,6 +4,17 @@ Setting up the package is mostly automated and is well documented in [R Packages
 
 ## R Package Set Up
 
+TODO
+
+### Git and GitHub
+
+If your are programming, you should be using git. This is especially important in the sciences because git logs can be used to resolve legal conflicts and issues of data falsification. GitHub is not essential, though I would highly recommend you use it because it makes managing files and collaboration much easier. It is also essential for taking advantage of some of the best parts of an R package such as build checks and `pkgdown` (see Extras below)
+
+To get started with git, there are *tons* of resources available, so I will not describe it here. If you are new to git and GitHub, here are a few good resources to get you started:
+
+* [An introduction to Git: what it is, and how to use it](https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61)
+* [How To Use Git: A Reference Guide](https://www.digitalocean.com/community/tutorials/how-to-use-git-a-reference-guide)
+* [GitHub Guides: Hello World](https://guides.github.com/activities/hello-world/)
 
 
 ## Remote
@@ -41,8 +52,51 @@ $0
 </snippet>
 ````
 
-### Using SSHFS
+### Using SSH File System
 
+I use SSH File System (SSFHS) to "mount" my remote directory to my local directory. It is essentually SFTP and SSH combined (the details go right over my head) and it is fairly easy to get set-up. Here is a [link](https://github.com/osxfuse/osxfuse/wiki/SSHFS) to get everything going, and I have included the steps I used below.
+
+To start I downloaded and installed [FUSE for macOS](https://osxfuse.github.io). Then I downloaded and installed the [latest build of SSHFS](https://github.com/osxfuse/sshfs/releases). Finally, I created an empty directory that will become the place that I mount the remote directory. Typically, I make the root of the package, though I could see instances where you would want the package in a subdirectory below it.
+
+```bash
+# on local
+mkdir ~/Lab_Projects/pkgName
+```
+
+On the remote server, I make a directory with the same name
+
+```bash
+# on remote
+/path/to/compute/directory/pkgName
+```
+
+Finally, to connect the two, I use the following command that is pretty much identical to initiating a normal ssh session.
+
+```bash
+# on local
+sshfs username@remote.host.com:/path/to/compute/directory/pkgName ~/Lab_Projects/pkgName
+```
+
+Now, the computer will treat the mount just like a normal flash drive, and ST3 fully accepts it. The only change I made to ST3 was to map a key-binding to "Project/Refresh Folders". This way, if new files are created remotely, a quick key-stroke and everything is visible in the ST3 sidebar.
+
+
+### Git and GitHub
+
+If working remotely, I have found it much easier to handle everything git-related on the remote side. Therefore, I created  ssh RSA keys and shared the public one with the GitHub repo so I could push over ssh. Setting this up is pretty simple and well outlined in [Connecting to GitHub with SSH](https://help.github.com/en/articles/connecting-to-github-with-ssh).
 
 
 ## Extras
+
+TODO
+
+### pkgdown
+
+TODO
+
+### Travis-CL, Apveyor, and Codecov
+
+TODO
+
+### Spelling
+
+TODO

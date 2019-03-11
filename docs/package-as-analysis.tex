@@ -292,6 +292,35 @@ extras that I recommend using, but are not necessary.
 
 \section{R Package Set Up}\label{r-package-set-up}
 
+TODO
+
+\subsection{Git and GitHub}\label{git-and-github}
+
+If your are programming, you should be using git. This is especially
+important in the sciences because git logs can be used to resolve legal
+conflicts and issues of data falsification. GitHub is not essential,
+though I would highly recommend you use it because it makes managing
+files and collaboration much easier. It is also essential for taking
+advantage of some of the best parts of an R package such as build checks
+and \texttt{pkgdown} (see Extras below)
+
+To get started with git, there are \emph{tons} of resources available,
+so I will not describe it here. If you are new to git and GitHub, here
+are a few good resources to get you started:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61}{An
+  introduction to Git: what it is, and how to use it}
+\item
+  \href{https://www.digitalocean.com/community/tutorials/how-to-use-git-a-reference-guide}{How
+  To Use Git: A Reference Guide}
+\item
+  \href{https://guides.github.com/activities/hello-world/}{GitHub
+  Guides: Hello World}
+\end{itemize}
+
 \section{Remote}\label{remote}
 
 If you conduct work remotely, I'm going to assume that you have ssh set
@@ -362,9 +391,79 @@ Before moving on, I made this snippet to quickly add a code chunk.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Using SSHFS}\label{using-sshfs}
+\subsection{Using SSH File System}\label{using-ssh-file-system}
+
+I use SSH File System (SSFHS) to ``mount'' my remote directory to my
+local directory. It is essentually SFTP and SSH combined (the details go
+right over my head) and it is fairly easy to get set-up. Here is a
+\href{https://github.com/osxfuse/osxfuse/wiki/SSHFS}{link} to get
+everything going, and I have included the steps I used below.
+
+To start I downloaded and installed
+\href{https://osxfuse.github.io}{FUSE for macOS}. Then I downloaded and
+installed the \href{https://github.com/osxfuse/sshfs/releases}{latest
+build of SSHFS}. Finally, I created an empty directory that will become
+the place that I mount the remote directory. Typically, I make the root
+of the package, though I could see instances where you would want the
+package in a subdirectory below it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# on local}
+\FunctionTok{mkdir}\NormalTok{ ~/Lab_Projects/pkgName}
+\end{Highlighting}
+\end{Shaded}
+
+On the remote server, I make a directory with the same name
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# on remote}
+\ExtensionTok{/path/to/compute/directory/pkgName}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, to connect the two, I use the following command that is pretty
+much identical to initiating a normal ssh session.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# on local}
+\ExtensionTok{sshfs}\NormalTok{ username@remote.host.com:/path/to/compute/directory/pkgName ~/Lab_Projects/pkgName}
+\end{Highlighting}
+\end{Shaded}
+
+Now, the computer will treat the mount just like a normal flash drive,
+and ST3 fully accepts it. The only change I made to ST3 was to map a
+key-binding to ``Project/Refresh Folders''. This way, if new files are
+created remotely, a quick key-stroke and everything is visible in the
+ST3 sidebar.
+
+\subsection{Git and GitHub}\label{git-and-github-1}
+
+If working remotely, I have found it much easier to handle everything
+git-related on the remote side. Therefore, I created ssh RSA keys and
+shared the public one with the GitHub repo so I could push over ssh.
+Setting this up is pretty simple and well outlined in
+\href{https://help.github.com/en/articles/connecting-to-github-with-ssh}{Connecting
+to GitHub with SSH}.
 
 \section{Extras}\label{extras}
+
+TODO
+
+\subsection{pkgdown}\label{pkgdown}
+
+TODO
+
+\subsection{Travis-CL, Apveyor, and
+Codecov}\label{travis-cl-apveyor-and-codecov}
+
+TODO
+
+\subsection{Spelling}\label{spelling}
+
+TODO
 
 \chapter{Framework}\label{framework}
 
