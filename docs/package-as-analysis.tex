@@ -31,6 +31,46 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -104,6 +144,34 @@ analysis. Though potentially more work, especially at the start, the
 purpose of using the R package framework is to maintain a clear and
 reproducible analysis.
 
+\section{Why}\label{why}
+
+Why bother with maintaining a package framework while also doing data
+analysis? It is a great question, especially when one considers the
+complexity and fluidity of an analysis and the rigidity of the R package
+framework. The answer is that some rigidity is needed - but just the
+basics. That is what the R package framework provides. There is a place
+for everything, though sometimes getting it to work (ie. build and pass
+checks) requires a few extra steps.
+
+During my own analyses, I found things were getting much too
+disorganized and decentralized. What would start out as exploratory
+would morph into a subdirectory graph more complex than the oringinal
+parent analysis. Perhaps for more organized people, this is unnecessary,
+but for those of us who want order and aren't sure how to get it, this
+framework offers a great place to start.
+
+The final (more abstract) reason for using the R package framework is to
+battle the current issue of reproducibility. Reproducibility is the
+cornerstone of science - if a finding it true, anyone should be able to
+replicate it. However, the scientific community has been dealing with an
+astounding amount of irreproducibility, most famously documented by the
+\href{http://science.sciencemag.org/content/349/6251/aac4716}{Open
+Science Collaboration}. If the analysis is organized as an R package,
+though, an analysis can be re-run entirely by anyone else familliar with
+R. Thus, whether they are collaborators and competitors, anyone should
+be able to follow the analysis a scientist publishes.
+
 \section{Advantages}\label{advantages}
 
 There are many advantages to using this framework. Here are just a few,
@@ -133,17 +201,102 @@ though I am sure you will find there are many others:
   documentation, etc.).
 \end{itemize}
 
-\chapter{Purpose}\label{purpose}
+\section{Examples}\label{examples}
 
-in progress
+{[}coming soon{]} Allele-specific \emph{KRAS} copy number alteration
+
+\section{About this Book}\label{about-this-book}
+
+{[}TODO{]}
+
+\section{About the Author}\label{about-the-author}
+
+I am a classically-trained biologist-turned computational biologist. I
+graduated with degrees in Molecular Biology and Biochemistry, and
+Chemistry from the University of California, Irvine in 2017. My research
+focused on investigating the patterns and mechanisms of dissemination by
+which \emph{Toxoplasma gondii}, an obligate, intracellular parasite,
+infects a human host
+\href{https://www.ncbi.nlm.nih.gov/pubmed/29295815}{Cook \emph{et al.},
+2018}. I started my graduate studies at Harvard Medical School in 2018,
+and after rotating in a chemical biology lab and a \emph{Vibrio
+cholerae} lab, I finally decided to study cancer using computational
+biology. Since then, and continuing still today, I have been learning
+computer programming and statistics, trying to catch up to my peers.
+Consequently, I have fallen in love with R, especially because of the
+\href{https://www.tidyverse.org}{Tyidyverse} and tidy data.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Resources}\label{resources}
+
+The best resource for making R packages is
+\href{http://r-pkgs.had.co.nz}{R Packages} by Hadley Wickham.
+
+There are some useful R packages you will want to have installed:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{devtools} - will do most of the development building and
+  checking
+\item
+  \texttt{roxygen2} - makes all of the documentation
+\item
+  \texttt{usethis} - for preparing all of the pieces and tools you want
+  to include
+\item
+  \texttt{testthat} - for running tests
+\item
+  \texttt{kintr} - for compiling all of the Rmarkdown files
+\end{itemize}
+
+These can be installed using the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\StringTok{"roxygen2"}\NormalTok{, }\StringTok{"usethis"}\NormalTok{, }\StringTok{"testthat"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Getting Started}\label{getting-started}
 
-in progress
+Setting up the package is mostly automated and is well documented in
+\href{http://r-pkgs.had.co.nz/intro.html}{R Packages} by Hadley Wickham.
+If you are running the analysis on your local machine, I would recommend
+using \href{https://www.rstudio.com}{RStudio} (which you likely already
+do), but this is possible to do on a remote computing cluster (which is
+how I work). I begin by going through the steps of setting up the basic
+package framework, which is the same for local or remote work. Following
+that, there is a section for how I work remotely. This can be skipped if
+you only work locally or if you already have a system you enjoy (though
+I highly recommend the system I currently use). I finish off with a few
+extras that I recommend using, but are not necessary.
+
+\section{Set-Up}\label{set-up}
+
+\section{Remote}\label{remote}
+
+\section{Extras}\label{extras}
 
 \chapter{Framework}\label{framework}
 
-in progress
+Include a subsetion on each main peice of package:
+
+\begin{itemize}
+\tightlist
+\item
+  what is it for
+\item
+  things to be wary of
+\item
+  specific use for data analysis
+\end{itemize}
+
+\chapter{\texorpdfstring{Example: Allele-specific \emph{KRAS}
+CNA}{Example: Allele-specific KRAS CNA}}\label{example-allele-specific-kras-cna}
+
+{[}in progress{]}
 
 \bibliography{book.bib}
 

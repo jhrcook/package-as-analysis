@@ -7,9 +7,9 @@ rmd_files:
     [
         "index.Rmd",
         
-        "Purpose.Rmd",
-        
         "Getting-Started.Rmd",
         
         "Framework.Rmd",
+        
+        "Example-KRAScna.Rmd"
     ]
