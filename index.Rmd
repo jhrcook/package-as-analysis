@@ -20,6 +20,7 @@ description: "This is a manual for how to conduct data science analysis using th
 
 This is a manual on how to use the standard R package framework for data analysis. Though potentially more work, especially at the start, the purpose of using the R package framework is to maintain a clear and reproducible analysis. 
 
+**[This book is currently in progress, though any [feedback](https://github.com/jhrcook/package-as-analysis/issues) is welcome.]**
 
 ## Why {-}
 
@@ -80,3 +81,4 @@ install.packages(c("devtools", "roxygen2", "usethis", "testthat", "knitr"))
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
 This work is under a [Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
