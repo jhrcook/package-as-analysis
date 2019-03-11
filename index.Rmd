@@ -46,7 +46,7 @@ There are many advantages to using this framework. Here are just a few, though I
 
 [coming soon] Allele-specific *KRAS* copy number alteration
 
-## About
+## About {-}
 
 ### About this Book {-}
 
