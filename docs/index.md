@@ -21,7 +21,7 @@ description: "This is a manual for how to conduct data science analysis using th
 This is a manual on how to use the standard R package framework for data analysis. Though potentially more work, especially at the start, the purpose of using the R package framework is to maintain a clear and reproducible analysis. 
 
 
-## Why
+## Why {-}
 
 Why bother with maintaining a package framework while also doing data analysis? It is a great question, especially when one considers the complexity and fluidity of an analysis and the rigidity of the R package framework. The answer is that some rigidity is needed - but just the basics. That is what the R package framework provides. There is a place for everything, though sometimes getting it to work (ie. build and pass checks) requires a few extra steps. 
 
@@ -30,7 +30,7 @@ During my own analyses, I found things were getting much too disorganized and de
 The final (more abstract) reason for using the R package framework is to battle the current issue of reproducibility. Reproducibility is the cornerstone of science - if a finding it true, anyone should be able to replicate it. However, the scientific community has been dealing with an astounding amount of irreproducibility, most famously documented by the [Open Science Collaboration](http://science.sciencemag.org/content/349/6251/aac4716). If the analysis is organized as an R package, though, an analysis can be re-run entirely by anyone else familliar with R. Thus, whether they are collaborators and competitors, anyone should be able to follow the analysis a scientist publishes.
 
 
-## Advantages
+## Advantages {-}
 
 There are many advantages to using this framework. Here are just a few, though I am sure you will find there are many others:
 
@@ -41,23 +41,22 @@ There are many advantages to using this framework. Here are just a few, though I
 * The analysis can take advantage of normal R package tools such as [Travis-CL](https://travis-ci.org) and [Codecov](https://codecov.io) integration, [pkgdown](https://pkgdown.r-lib.org), and [devtools](https://devtools.r-lib.org) (build checks, documentation, etc.).
 
 
-## Examples 
+## Examples {-}
 
 [coming soon] Allele-specific *KRAS* copy number alteration
 
 
-## About this Book
+## About this Book {-}
 
 [TODO]
 
-## About the Author
+## About the Author {-}
 
 I am a classically-trained biologist-turned computational biologist. I graduated with degrees in Molecular Biology and Biochemistry, and Chemistry from the University of California, Irvine in 2017. My research focused on investigating the patterns and mechanisms of dissemination by which *Toxoplasma gondii*, an obligate, intracellular parasite, infects a human host [Cook *et al.*, 2018](https://www.ncbi.nlm.nih.gov/pubmed/29295815). I started my graduate studies at Harvard Medical School in 2018, and after rotating in a chemical biology lab and a *Vibrio cholerae* lab, I finally decided to study cancer using computational biology. Since then, and continuing still today, I have been learning computer programming and statistics, trying to catch up to my peers. Consequently, I have fallen in love with R, especially because of the [Tyidyverse](https://www.tidyverse.org) and tidy data.
 
 
----
 
-## Resources
+## Resources {-}
 
 The best resource for making R packages is [R Packages](http://r-pkgs.had.co.nz) by Hadley Wickham.
 
@@ -76,3 +75,9 @@ These can be installed using the following code.
 install.packages(c("devtools", "roxygen2", "usethis", "testthat", "knitr"))
 ```
 
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+This work is under a [Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)

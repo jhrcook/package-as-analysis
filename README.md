@@ -1,5 +1,7 @@
 # Package as Analysis <a href="https://jhrcook.github.io/package-as-analysis"> <img src="cover.png" width="250" height="366" align="right" alt="Cover image" /> </a>
 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
 [This book is currently in progress, though any feedback is welcome.]
 
 This is a manual on how to use the standard R package framework for data analysis. Though potentially more work, especially at the start, the purpose of using the R package framework is to maintain a clear and reproducible analysis. 
