@@ -287,9 +287,79 @@ you only work locally or if you already have a system you enjoy (though
 I highly recommend the system I currently use). I finish off with a few
 extras that I recommend using, but are not necessary.
 
-\section{Set-Up}\label{set-up}
+\section{R Package Set Up}\label{r-package-set-up}
 
 \section{Remote}\label{remote}
+
+If you conduct work remotely, I'm going to assume that you have ssh set
+up and running. Otherwise, there are plenty of resources available, and
+you should review the material available by your system admin.
+
+Though I prefer Rstudio for normal package development, I spare my
+computer the pain of performing complex and heavy computation, opting
+instead to off-load it to the \href{https://rc.hms.harvard.edu}{Harvard
+Medical School Research Computing Cluster}. Therefore, I use
+\href{https://www.sublimetext.com}{SublimeText3} as by text editor and
+send code to the remote comuting node over ssh using
+\href{https://iterm2colorschemes.com}{iTerm2} as my terrminal. Finally,
+I use SSH File System (SSHFS) to ``mount'' the remote directory to my
+local directory.
+
+\subsection{SublimeText3 Set-Up}\label{sublimetext3-set-up}
+
+Here are the handful of SublimeText3 (ST3) packages I use for R coding,
+followed by any particular notes on their use:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://packagecontrol.io/packages/LSP}{LSP} - ``Gives Sublime
+  Text 3 rich editing features for languages with Language Server
+  Protocol support''
+\item
+  \href{https://packagecontrol.io/packages/MarkdownEditing}{MarkdownEditing}
+  - ``Markdown plugin for Sublime Text. Provides\ldots{} more robust
+  syntax highlighting and useful Markdown editing features for Sublime
+  Text.''
+\item
+  \href{https://packagecontrol.io/packages/R-IDE}{R-IDE} -
+  ``{[}A{]}iming to utilize the use of language server + better support
+  R Markdown + better support of R packaging + \ldots{}''
+\item
+  \href{https://packagecontrol.io/packages/SendCode}{SendCode} - ``Send
+  code and text to macOS and Linux Terminals, iTerm, ConEmu, Cmder,
+  Tmux, Terminus; R (RStudio), Julia, IPython.''
+\end{itemize}
+
+LSP and R-IDE handle syntax and completion in ST3. It isn't a great
+system, so if you know of a better set-up in ST3,
+\href{https://github.com/jhrcook/package-as-analysis/issues}{please let
+me know}. MarkdownEditing and R-IDE combine to make RMarkdown feasible.
+The SendCode package essentially copies, pastes, and runs my code
+written in ST3 to the terminal when I press \texttt{command} +
+\texttt{return}. This way, I can type in ST3 and run in the terminal
+without using the mouse.
+
+Before moving on, I made this snippet to quickly add a code chunk.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{<snippet>}
+        \KeywordTok{<content>}\BaseNTok{<![CDATA[}
+\NormalTok{```\{r $\{1:chunk_name\}\}}
+\NormalTok{$0}
+\NormalTok{```}
+\BaseNTok{]]>}\KeywordTok{</content>}
+        \CommentTok{<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->}
+        \KeywordTok{<tabTrigger>}\NormalTok{rchunk}\KeywordTok{</tabTrigger>}
+        \CommentTok{<!-- Optional: Set a scope to limit where the snippet will trigger -->}
+        \KeywordTok{<scope>}\NormalTok{text.html.markdown.multimarkdown, text.html.markdown}\KeywordTok{</scope>}
+        \KeywordTok{<description>}\NormalTok{create a Rmd code chunk}\KeywordTok{</description>}
+\KeywordTok{</snippet>}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Using SSHFS}\label{using-sshfs}
 
 \section{Extras}\label{extras}
 

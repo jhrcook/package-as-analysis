@@ -114,8 +114,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.1</b> License</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
-<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#set-up"><i class="fa fa-check"></i><b>1.1</b> Set-Up</a></li>
-<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#remote"><i class="fa fa-check"></i><b>1.2</b> Remote</a></li>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#r-package-set-up"><i class="fa fa-check"></i><b>1.1</b> R Package Set Up</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#remote"><i class="fa fa-check"></i><b>1.2</b> Remote</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="getting-started.html"><a href="getting-started.html#sublimetext3-set-up"><i class="fa fa-check"></i><b>1.2.1</b> SublimeText3 Set-Up</a></li>
+<li class="chapter" data-level="1.2.2" data-path="getting-started.html"><a href="getting-started.html#using-sshfs"><i class="fa fa-check"></i><b>1.2.2</b> Using SSHFS</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#extras"><i class="fa fa-check"></i><b>1.3</b> Extras</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="framework.html"><a href="framework.html"><i class="fa fa-check"></i><b>2</b> Framework</a></li>
@@ -144,11 +147,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="getting-started" class="section level1">
 <h1><span class="header-section-number">1</span> Getting Started</h1>
 <p>Setting up the package is mostly automated and is well documented in <a href="http://r-pkgs.had.co.nz/intro.html">R Packages</a> by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using <a href="https://www.rstudio.com">RStudio</a> (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.</p>
-<div id="set-up" class="section level2">
-<h2><span class="header-section-number">1.1</span> Set-Up</h2>
+<div id="r-package-set-up" class="section level2">
+<h2><span class="header-section-number">1.1</span> R Package Set Up</h2>
 </div>
 <div id="remote" class="section level2">
 <h2><span class="header-section-number">1.2</span> Remote</h2>
+<p>If you conduct work remotely, I’m going to assume that you have ssh set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.</p>
+<p>Though I prefer Rstudio for normal package development, I spare my computer the pain of performing complex and heavy computation, opting instead to off-load it to the <a href="https://rc.hms.harvard.edu">Harvard Medical School Research Computing Cluster</a>. Therefore, I use <a href="https://www.sublimetext.com">SublimeText3</a> as by text editor and send code to the remote comuting node over ssh using <a href="https://iterm2colorschemes.com">iTerm2</a> as my terrminal. Finally, I use SSH File System (SSHFS) to “mount” the remote directory to my local directory.</p>
+<div id="sublimetext3-set-up" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> SublimeText3 Set-Up</h3>
+<p>Here are the handful of SublimeText3 (ST3) packages I use for R coding, followed by any particular notes on their use:</p>
+<ul>
+<li><a href="https://packagecontrol.io/packages/LSP">LSP</a> - “Gives Sublime Text 3 rich editing features for languages with Language Server Protocol support”</li>
+<li><a href="https://packagecontrol.io/packages/MarkdownEditing">MarkdownEditing</a> - “Markdown plugin for Sublime Text. Provides… more robust syntax highlighting and useful Markdown editing features for Sublime Text.”</li>
+<li><a href="https://packagecontrol.io/packages/R-IDE">R-IDE</a> - “[A]iming to utilize the use of language server + better support R Markdown + better support of R packaging + …”</li>
+<li><a href="https://packagecontrol.io/packages/SendCode">SendCode</a> - “Send code and text to macOS and Linux Terminals, iTerm, ConEmu, Cmder, Tmux, Terminus; R (RStudio), Julia, IPython.”</li>
+</ul>
+<p>LSP and R-IDE handle syntax and completion in ST3. It isn’t a great system, so if you know of a better set-up in ST3, <a href="https://github.com/jhrcook/package-as-analysis/issues">please let me know</a>. MarkdownEditing and R-IDE combine to make RMarkdown feasible. The SendCode package essentially copies, pastes, and runs my code written in ST3 to the terminal when I press <code>command</code> + <code>return</code>. This way, I can type in ST3 and run in the terminal without using the mouse.</p>
+<p>Before moving on, I made this snippet to quickly add a code chunk.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;snippet&gt;</span>
+        <span class="kw">&lt;content&gt;</span><span class="bn">&lt;![CDATA[</span>
+```{r ${1:chunk_name}}
+$0
+```
+<span class="bn">]]&gt;</span><span class="kw">&lt;/content&gt;</span>
+        <span class="co">&lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;</span>
+        <span class="kw">&lt;tabTrigger&gt;</span>rchunk<span class="kw">&lt;/tabTrigger&gt;</span>
+        <span class="co">&lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;</span>
+        <span class="kw">&lt;scope&gt;</span>text.html.markdown.multimarkdown, text.html.markdown<span class="kw">&lt;/scope&gt;</span>
+        <span class="kw">&lt;description&gt;</span>create a Rmd code chunk<span class="kw">&lt;/description&gt;</span>
+<span class="kw">&lt;/snippet&gt;</span></code></pre></div>
+</div>
+<div id="using-sshfs" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Using SSHFS</h3>
+</div>
 </div>
 <div id="extras" class="section level2">
 <h2><span class="header-section-number">1.3</span> Extras</h2>

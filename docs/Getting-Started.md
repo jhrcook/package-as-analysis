@@ -2,12 +2,46 @@
 
 Setting up the package is mostly automated and is well documented in [R Packages](http://r-pkgs.had.co.nz/intro.html) by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using [RStudio](https://www.rstudio.com) (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.
 
-## Set-Up
+## R Package Set Up
 
 
 
 ## Remote
 
+If you conduct work remotely, I'm going to assume that you have ssh set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.
+
+Though I prefer Rstudio for normal package development, I spare my computer the pain of performing complex and heavy computation, opting instead to off-load it to the [Harvard Medical School Research Computing Cluster](https://rc.hms.harvard.edu). Therefore, I use [SublimeText3](https://www.sublimetext.com) as by text editor and send code to the remote comuting node over ssh using [iTerm2](https://iterm2colorschemes.com) as my terrminal. Finally, I use SSH File System (SSHFS) to "mount" the remote directory to my local directory.
+
+
+### SublimeText3 Set-Up
+
+Here are the handful of SublimeText3 (ST3) packages I use for R coding, followed by any particular notes on their use:
+
+* [LSP](https://packagecontrol.io/packages/LSP) - "Gives Sublime Text 3 rich editing features for languages with Language Server Protocol support"
+* [MarkdownEditing](https://packagecontrol.io/packages/MarkdownEditing) - "Markdown plugin for Sublime Text. Provides... more robust syntax highlighting and useful Markdown editing features for Sublime Text."
+* [R-IDE](https://packagecontrol.io/packages/R-IDE) - "[A]iming to utilize the use of language server + better support R Markdown + better support of R packaging + ..."
+* [SendCode](https://packagecontrol.io/packages/SendCode) - "Send code and text to macOS and Linux Terminals, iTerm, ConEmu, Cmder, Tmux, Terminus; R (RStudio), Julia, IPython."
+
+LSP and R-IDE handle syntax and completion in ST3. It isn't a great system, so if you know of a better set-up in ST3, [please let me know](https://github.com/jhrcook/package-as-analysis/issues). MarkdownEditing and R-IDE combine to make RMarkdown feasible. The SendCode package essentially copies, pastes, and runs my code written in ST3 to the terminal when I press `command` + `return`. This way, I can type in ST3 and run in the terminal without using the mouse.
+
+Before moving on, I made this snippet to quickly add a code chunk.
+
+````html
+<snippet>
+        <content><![CDATA[
+```{r ${1:chunk_name}}
+$0
+```
+]]></content>
+        <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+        <tabTrigger>rchunk</tabTrigger>
+        <!-- Optional: Set a scope to limit where the snippet will trigger -->
+        <scope>text.html.markdown.multimarkdown, text.html.markdown</scope>
+        <description>create a Rmd code chunk</description>
+</snippet>
+````
+
+### Using SSHFS
 
 
 
