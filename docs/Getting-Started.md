@@ -12,7 +12,13 @@ It's easy to create the package from the R console.
 
 
 ```r
-usethis::create("path/to/package/pkgname")
+usethis::create_package("path/to/package/ExampleAnalysisPackage")
+#> ✔ Setting active project to 'path/to/package/ExampleAnalysisPackage'
+#> ✔ Creating 'R/'
+#> ✔ Creating 'man/'
+#> ✔ Writing 'DESCRIPTION'
+#> ✔ Writing 'NAMESPACE'
+#> ✔ Changing working directory to 'path/to/package/ExampleAnalysisPackage'
 ```
 
 You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at [choosealicense.com](https://choosealicense.com).
@@ -20,6 +26,10 @@ You can then add a license as shown below. I generally use a GPL-3, though you c
 
 ```r
 usethis::use_gpl3_license(name = "Your Name")
+#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'
+#> ✔ Setting License field in DESCRIPTION to 'GPL-3'
+#> ✔ Writing 'LICENSE.md'
+#> ✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
 ```
 
 Prepare the project to use roxygen for documentation.
@@ -27,6 +37,9 @@ Prepare the project to use roxygen for documentation.
 
 ```r
 usethis::use_roxygen_md()
+#> ✔ Setting Roxygen field in DESCRIPTION to 'list(markdown = TRUE)'
+#> ✔ Setting RoxygenNote field in DESCRIPTION to '6.1.1'
+#> ● Run `devtools::document()`
 ```
 
 Create a README file. You can also opt to use a normal Markdown file with `usethis::use_readme_md()`, though I would recommend to just go with an R Markdown file.
@@ -34,6 +47,9 @@ Create a README file. You can also opt to use a normal Markdown file with `useth
 
 ```r
 usethis::use_readme_rmd()
+#> ✔ Writing 'README.Rmd'
+#> ✔ Adding '^README\\.Rmd$' to '.Rbuildignore'
+#> ● Modify 'README.Rmd'
 ```
 
 Create a "NEWS" file for announcing major changes to the project.
@@ -41,6 +57,8 @@ Create a "NEWS" file for announcing major changes to the project.
 
 ```r
 usethis::use_news_md()
+#> ✔ Writing 'NEWS.md'
+#> ● Modify 'NEWS.md'
 ```
 
 Create a "data-raw" directory.
@@ -48,6 +66,11 @@ Create a "data-raw" directory.
 
 ```r
 usethis::use_data_raw()
+#> ✔ Creating 'data-raw/'
+#> ✔ Adding '^data-raw$' to '.Rbuildignore'
+#> Next:
+#> ● Add data creation scripts in 'data-raw/'
+#> ● Use `usethis::use_data()` to add data to package
 ```
 
 Finally, set up the use of testthat package for testing.
@@ -55,6 +78,9 @@ Finally, set up the use of testthat package for testing.
 
 ```r
 usethis::use_testthat()
+#> ✔ Adding 'testthat' to Suggests field in DESCRIPTION
+#> ✔ Creating 'tests/testthat/'
+#> ✔ Writing 'tests/testthat.R'
 ```
 
 **Note:** If you are working remotely (i.e.. SSHing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (e.g.. open "NEWS.md" after using `use_news_md()`) in vim. To suppress this, just pass the parameter `open = FALSE`. Otherwise, it is set to `interactive()`.
@@ -72,6 +98,19 @@ To get started with git, there are *tons* of resources available, so I will not 
 
 There is a usethis function to initiate git (`usethis::use_git()`) though I always prefer to set up myself.
 
+
+```r
+usethis::use_git()
+#> ✔ Initialising Git repo
+#> ✔ Adding '.Rhistory', '.RData', '.Rproj.user' to '.gitignore'
+#> OK to make an initial commit of 8 files?
+#> 1: Yeah
+#> 2: Absolutely not
+#> 3: No way
+1
+#> Selection: 1
+#> ✔ Adding files and committing
+```
 
 ## Remote
 
@@ -159,6 +198,10 @@ The use of pkgdown obviously begins with a usethis function.
 
 ```r
 usethis::use_pkgdown()
+#> ● Modify '_pkgdown.yml'
+#> ✔ Adding '^_pkgdown\\.yml$' to '.Rbuildignore'
+#> ✔ Creating 'docs/'
+#> ✔ Adding '^docs$' to '.Rbuildignore'
 ```
 
 All that you have to do from there is use `pkgdown::build_site()` to build the site whenever the project is at a good stopping point for the day. (If working remotely, pass `preview = FALSE` to prevent pkgdown from searching for a browser to display in when completed.)
@@ -168,6 +211,8 @@ To show the website on GitHub, go to "Settings" in the repository, and select "m
 
 
 ### Travis-CI, Appveyor, and Codecov
+
+**TODO:** To use these, GitHub must be set up -- make a github repo for the fake package
 
 GitHub integration also opens up the use of continuous integration (CI) apps. [Travis-CI](https://travis-ci.org) and [Appveyor](https://www.appveyor.com) are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Notably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
 

@@ -303,19 +303,7 @@ framework:
   what is unique about its use for a data analysis project?
 \end{enumerate}
 
-{[}TODO{]}
-
-Include a subsetion on each main peice of package:
-
-\begin{itemize}
-\tightlist
-\item
-  what is it for
-\item
-  things to be wary of
-\item
-  specific use for data analysis
-\end{itemize}
+\section{The R/ Directory}\label{the-r-directory}
 
 \chapter{Getting Started}\label{getting-started}
 
@@ -349,7 +337,13 @@ It's easy to create the package from the R console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{usethis}\OperatorTok{::}\KeywordTok{create}\NormalTok{(}\StringTok{"path/to/package/pkgname"}\NormalTok{)}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{create_package}\NormalTok{(}\StringTok{"path/to/package/ExampleAnalysisPackage"}\NormalTok{)}
+\CommentTok{#> ✔ Setting active project to 'path/to/package/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Creating 'R/'}
+\CommentTok{#> ✔ Creating 'man/'}
+\CommentTok{#> ✔ Writing 'DESCRIPTION'}
+\CommentTok{#> ✔ Writing 'NAMESPACE'}
+\CommentTok{#> ✔ Changing working directory to 'path/to/package/ExampleAnalysisPackage'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -360,6 +354,10 @@ though you can get a lot of information on the common licenses at
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_gpl3_license}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Your Name"}\NormalTok{)}
+\CommentTok{#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Setting License field in DESCRIPTION to 'GPL-3'}
+\CommentTok{#> ✔ Writing 'LICENSE.md'}
+\CommentTok{#> ✔ Adding '^LICENSE\textbackslash{}\textbackslash{}.md$' to '.Rbuildignore'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -368,6 +366,9 @@ Prepare the project to use roxygen for documentation.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_roxygen_md}\NormalTok{()}
+\CommentTok{#> ✔ Setting Roxygen field in DESCRIPTION to 'list(markdown = TRUE)'}
+\CommentTok{#> ✔ Setting RoxygenNote field in DESCRIPTION to '6.1.1'}
+\CommentTok{#> ● Run `devtools::document()`}
 \end{Highlighting}
 \end{Shaded}
 
@@ -378,6 +379,9 @@ just go with an R Markdown file.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_readme_rmd}\NormalTok{()}
+\CommentTok{#> ✔ Writing 'README.Rmd'}
+\CommentTok{#> ✔ Adding '^README\textbackslash{}\textbackslash{}.Rmd$' to '.Rbuildignore'}
+\CommentTok{#> ● Modify 'README.Rmd'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -386,6 +390,8 @@ Create a ``NEWS'' file for announcing major changes to the project.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_news_md}\NormalTok{()}
+\CommentTok{#> ✔ Writing 'NEWS.md'}
+\CommentTok{#> ● Modify 'NEWS.md'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -394,6 +400,11 @@ Create a ``data-raw'' directory.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_data_raw}\NormalTok{()}
+\CommentTok{#> ✔ Creating 'data-raw/'}
+\CommentTok{#> ✔ Adding '^data-raw$' to '.Rbuildignore'}
+\CommentTok{#> Next:}
+\CommentTok{#> ● Add data creation scripts in 'data-raw/'}
+\CommentTok{#> ● Use `usethis::use_data()` to add data to package}
 \end{Highlighting}
 \end{Shaded}
 
@@ -402,6 +413,9 @@ Finally, set up the use of testthat package for testing.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_testthat}\NormalTok{()}
+\CommentTok{#> ✔ Adding 'testthat' to Suggests field in DESCRIPTION}
+\CommentTok{#> ✔ Creating 'tests/testthat/'}
+\CommentTok{#> ✔ Writing 'tests/testthat.R'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -441,6 +455,21 @@ are a few good resources to get you started:
 
 There is a usethis function to initiate git
 (\texttt{usethis::use\_git()}) though I always prefer to set up myself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_git}\NormalTok{()}
+\CommentTok{#> ✔ Initialising Git repo}
+\CommentTok{#> ✔ Adding '.Rhistory', '.RData', '.Rproj.user' to '.gitignore'}
+\CommentTok{#> OK to make an initial commit of 8 files?}
+\CommentTok{#> 1: Yeah}
+\CommentTok{#> 2: Absolutely not}
+\CommentTok{#> 3: No way}
+\DecValTok{1}
+\CommentTok{#> Selection: 1}
+\CommentTok{#> ✔ Adding files and committing}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Remote}\label{remote}
 
@@ -602,6 +631,10 @@ The use of pkgdown obviously begins with a usethis function.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_pkgdown}\NormalTok{()}
+\CommentTok{#> ● Modify '_pkgdown.yml'}
+\CommentTok{#> ✔ Adding '^_pkgdown\textbackslash{}\textbackslash{}.yml$' to '.Rbuildignore'}
+\CommentTok{#> ✔ Creating 'docs/'}
+\CommentTok{#> ✔ Adding '^docs$' to '.Rbuildignore'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -618,6 +651,9 @@ plug for lil' ole' ggasym).
 
 \subsection{Travis-CI, Appveyor, and
 Codecov}\label{travis-ci-appveyor-and-codecov}
+
+\textbf{TODO:} To use these, GitHub must be set up -- make a github repo
+for the fake package
 
 GitHub integration also opens up the use of continuous integration (CI)
 apps. \href{https://travis-ci.org}{Travis-CI} and

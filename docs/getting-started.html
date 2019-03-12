@@ -117,6 +117,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1" data-path="framework.html"><a href="framework.html"><i class="fa fa-check"></i><b>1</b> Framework</a><ul>
 <li class="chapter" data-level="1.1" data-path="framework.html"><a href="framework.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="framework.html"><a href="framework.html#the-r-directory"><i class="fa fa-check"></i><b>1.2</b> The R/ Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#r-package-set-up"><i class="fa fa-check"></i><b>2.1</b> R Package Set Up</a><ul>
@@ -165,19 +166,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The set up process is rather simple. If using RStudio, you can start a new R project as a package. Otherwise, the following command will get the basic framework started. There is a lot of overlap between the devtools and usethis package. I believe that RStudio is trying to fade out devtools and instead have people use the various packages that were split from it, including usethis.</p>
 <p>The advantage to using the usethis functions for seemingly simple tasks (such as making the “data-raw” directory) is that it will also add the necessary lines to “.RBuildignore,” the “DESCRIPTION,” and “NAMESPACE” if needed.</p>
 <p>It’s easy to create the package from the R console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create</span>(<span class="st">&quot;path/to/package/pkgname&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&quot;path/to/package/ExampleAnalysisPackage&quot;</span>)
+<span class="co">#&gt; ✔ Setting active project to &#39;path/to/package/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ✔ Creating &#39;R/&#39;</span>
+<span class="co">#&gt; ✔ Creating &#39;man/&#39;</span>
+<span class="co">#&gt; ✔ Writing &#39;DESCRIPTION&#39;</span>
+<span class="co">#&gt; ✔ Writing &#39;NAMESPACE&#39;</span>
+<span class="co">#&gt; ✔ Changing working directory to &#39;path/to/package/ExampleAnalysisPackage&#39;</span></code></pre></div>
 <p>You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at <a href="https://choosealicense.com">choosealicense.com</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_gpl3_license</span>(<span class="dt">name =</span> <span class="st">&quot;Your Name&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_gpl3_license</span>(<span class="dt">name =</span> <span class="st">&quot;Your Name&quot;</span>)
+<span class="co">#&gt; ✔ Setting active project to &#39;/Users/admin/Documents/R/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ✔ Setting License field in DESCRIPTION to &#39;GPL-3&#39;</span>
+<span class="co">#&gt; ✔ Writing &#39;LICENSE.md&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^LICENSE\\.md$&#39; to &#39;.Rbuildignore&#39;</span></code></pre></div>
 <p>Prepare the project to use roxygen for documentation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()
+<span class="co">#&gt; ✔ Setting Roxygen field in DESCRIPTION to &#39;list(markdown = TRUE)&#39;</span>
+<span class="co">#&gt; ✔ Setting RoxygenNote field in DESCRIPTION to &#39;6.1.1&#39;</span>
+<span class="co">#&gt; ● Run `devtools::document()`</span></code></pre></div>
 <p>Create a README file. You can also opt to use a normal Markdown file with <code>usethis::use_readme_md()</code>, though I would recommend to just go with an R Markdown file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_readme_rmd</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_readme_rmd</span>()
+<span class="co">#&gt; ✔ Writing &#39;README.Rmd&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^README\\.Rmd$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; ● Modify &#39;README.Rmd&#39;</span></code></pre></div>
 <p>Create a “NEWS” file for announcing major changes to the project.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_news_md</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_news_md</span>()
+<span class="co">#&gt; ✔ Writing &#39;NEWS.md&#39;</span>
+<span class="co">#&gt; ● Modify &#39;NEWS.md&#39;</span></code></pre></div>
 <p>Create a “data-raw” directory.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_data_raw</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_data_raw</span>()
+<span class="co">#&gt; ✔ Creating &#39;data-raw/&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^data-raw$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; Next:</span>
+<span class="co">#&gt; ● Add data creation scripts in &#39;data-raw/&#39;</span>
+<span class="co">#&gt; ● Use `usethis::use_data()` to add data to package</span></code></pre></div>
 <p>Finally, set up the use of testthat package for testing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_testthat</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_testthat</span>()
+<span class="co">#&gt; ✔ Adding &#39;testthat&#39; to Suggests field in DESCRIPTION</span>
+<span class="co">#&gt; ✔ Creating &#39;tests/testthat/&#39;</span>
+<span class="co">#&gt; ✔ Writing &#39;tests/testthat.R&#39;</span></code></pre></div>
 <p><strong>Note:</strong> If you are working remotely (i.e.. SSHing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (e.g.. open “NEWS.md” after using <code>use_news_md()</code>) in vim. To suppress this, just pass the parameter <code>open = FALSE</code>. Otherwise, it is set to <code>interactive()</code>.</p>
 <div id="git-and-github" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Git and GitHub</h3>
@@ -189,6 +216,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://guides.github.com/activities/hello-world/">GitHub Guides: Hello World</a></li>
 </ul>
 <p>There is a usethis function to initiate git (<code>usethis::use_git()</code>) though I always prefer to set up myself.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_git</span>()
+<span class="co">#&gt; ✔ Initialising Git repo</span>
+<span class="co">#&gt; ✔ Adding &#39;.Rhistory&#39;, &#39;.RData&#39;, &#39;.Rproj.user&#39; to &#39;.gitignore&#39;</span>
+<span class="co">#&gt; OK to make an initial commit of 8 files?</span>
+<span class="co">#&gt; 1: Yeah</span>
+<span class="co">#&gt; 2: Absolutely not</span>
+<span class="co">#&gt; 3: No way</span>
+<span class="dv">1</span>
+<span class="co">#&gt; Selection: 1</span>
+<span class="co">#&gt; ✔ Adding files and committing</span></code></pre></div>
 </div>
 </div>
 <div id="remote" class="section level2">
@@ -251,12 +288,17 @@ $0
 <li><a href="https://jhrcook.github.io/ggasym/index.html">ggasym</a> (a shameless plug of my own lil’ package)</li>
 </ul>
 <p>The use of pkgdown obviously begins with a usethis function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()
+<span class="co">#&gt; ● Modify &#39;_pkgdown.yml&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^_pkgdown\\.yml$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; ✔ Creating &#39;docs/&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^docs$&#39; to &#39;.Rbuildignore&#39;</span></code></pre></div>
 <p>All that you have to do from there is use <code>pkgdown::build_site()</code> to build the site whenever the project is at a good stopping point for the day. (If working remotely, pass <code>preview = FALSE</code> to prevent pkgdown from searching for a browser to display in when completed.)</p>
 <p>To show the website on GitHub, go to “Settings” in the repository, and select “master branch /docs folder” from the options in the “GitHub Pages” section. It should look something like this (another shameless plug for lil’ ole’ ggasym).</p>
 </div>
 <div id="travis-ci-appveyor-and-codecov" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Travis-CI, Appveyor, and Codecov</h3>
+<p><strong>TODO:</strong> To use these, GitHub must be set up – make a github repo for the fake package</p>
 <p>GitHub integration also opens up the use of continuous integration (CI) apps. <a href="https://travis-ci.org">Travis-CI</a> and <a href="https://www.appveyor.com">Appveyor</a> are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Notably, Appveyor build the package on Linux and Windows. To get started, just use usethis.</p>
 <p><a href="https://codecov.io">Codecov</a> provides an indication as to how well the package’s tests cover the code. Though not a perfect measure of test quality (nothing ever will be), I find this tool to be helpful for me to find which functions I have and have not created tests for.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_travis</span>()

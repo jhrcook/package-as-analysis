@@ -11,11 +11,4 @@ I try to adhere to the following process for each peace of the framework:
 3. what is unique about its use for a data analysis project?
 
 
-
-[TODO]
-
-Include a subsetion on each main peice of package:
-
-* what is it for
-* things to be wary of
-* specific use for data analysis
+## The R/ Directory
