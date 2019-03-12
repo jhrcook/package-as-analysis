@@ -26,7 +26,7 @@ Prepare the project to use roxygen for documentation.
 usethis::use_roxygen_md()
 ```
 
-Create a README file. You can also opt to use a normal Markdown file with `usethis::use_readme_md()`, though I would recommend to just go with an RMarkdown file.
+Create a README file. You can also opt to use a normal Markdown file with `usethis::use_readme_md()`, though I would recommend to just go with an R Markdown file.
 
 ```{r, eval = FALSE}
 usethis::use_readme_rmd()
@@ -50,7 +50,7 @@ Finally, set up the use of testthat package for testing.
 usethis::use_testthat()
 ```
 
-**Note:** If you are working remotely (ie. sshing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (eg. open "NEWS.md" after using `use_news_md()`) in vim. To suppress this, just pass the paramter `open = FALSE`. Otherwise, it is set to `interactive()`.
+**Note:** If you are working remotely (i.e.. SSHing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (e.g.. open "NEWS.md" after using `use_news_md()`) in vim. To suppress this, just pass the parameter `open = FALSE`. Otherwise, it is set to `interactive()`.
 
 
 ### Git and GitHub
@@ -68,9 +68,9 @@ There is a usethis function to initiate git (`usethis::use_git()`) though I alwa
 
 ## Remote
 
-If you conduct work remotely, I'm going to assume that you have ssh set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.
+If you conduct work remotely, I'm going to assume that you have SSH set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.
 
-Though I prefer Rstudio for normal package development, I spare my computer the pain of performing complex and heavy computation, opting instead to off-load it to the [Harvard Medical School Research Computing Cluster](https://rc.hms.harvard.edu). Therefore, I use [SublimeText3](https://www.sublimetext.com) as by text editor and send code to the remote comuting node over ssh using [iTerm2](https://iterm2colorschemes.com) as my terrminal. Finally, I use SSH File System (SSHFS) to "mount" the remote directory to my local directory.
+Though I prefer RStudio for normal package development, I spare my computer the pain of performing complex and heavy computation, opting instead to off-load it to the [Harvard Medical School Research Computing Cluster](https://rc.hms.harvard.edu). Therefore, I use [SublimeText3](https://www.sublimetext.com) as by text editor and send code to the remote computing node over SSH using [iTerm2](https://iterm2colorschemes.com) as my terminal. Finally, I use SSH File System (SSHFS) to "mount" the remote directory to my local directory.
 
 
 ### SublimeText3 Set-Up
@@ -82,7 +82,7 @@ Here are the handful of SublimeText3 (ST3) packages I use for R coding, followed
 * [R-IDE](https://packagecontrol.io/packages/R-IDE) - "[A]iming to utilize the use of language server + better support R Markdown + better support of R packaging + ..."
 * [SendCode](https://packagecontrol.io/packages/SendCode) - "Send code and text to macOS and Linux Terminals, iTerm, ConEmu, Cmder, Tmux, Terminus; R (RStudio), Julia, IPython."
 
-LSP and R-IDE handle syntax and completion in ST3. It isn't a great system, so if you know of a better set-up in ST3, [please let me know](https://github.com/jhrcook/package-as-analysis/issues). MarkdownEditing and R-IDE combine to make RMarkdown feasible. The SendCode package essentially copies, pastes, and runs my code written in ST3 to the terminal when I press `command` + `return`. This way, I can type in ST3 and run in the terminal without using the mouse.
+LSP and R-IDE handle syntax and completion in ST3. It isn't a great system, so if you know of a better set-up in ST3, [please let me know](https://github.com/jhrcook/package-as-analysis/issues). MarkdownEditing and R-IDE combine to make R Markdown feasible. The SendCode package essentially copies, pastes, and runs my code written in ST3 to the terminal when I press `command` + `return`. This way, I can type in ST3 and run in the terminal without using the mouse.
 
 Before moving on, I made this snippet to quickly add a code chunk.
 
@@ -103,27 +103,27 @@ $0
 
 ### Using SSH File System
 
-I use SSH File System (SSFHS) to "mount" my remote directory to my local directory. It is essentually SFTP and SSH combined (the details go right over my head) and it is fairly easy to get set-up. Here is a [link](https://github.com/osxfuse/osxfuse/wiki/SSHFS) to get everything going, and I have included the steps I used below.
+I use SSH File System (SSFHS) to "mount" my remote directory to my local directory. It is essentially SFTP and SSH combined (the details go right over my head) and it is fairly easy to get set-up. Here is a [link](https://github.com/osxfuse/osxfuse/wiki/SSHFS) to get everything going, and I have included the steps I used below.
 
 To start I downloaded and installed [FUSE for macOS](https://osxfuse.github.io). Then I downloaded and installed the [latest build of SSHFS](https://github.com/osxfuse/sshfs/releases). Finally, I created an empty directory that will become the place that I mount the remote directory. Typically, I make the root of the package, though I could see instances where you would want the package in a subdirectory below it.
 
 ```bash
 # on local
-mkdir ~/Lab_Projects/pkgName
+mkdir ~/local/path/pkgName
 ```
 
 On the remote server, I make a directory with the same name
 
 ```bash
 # on remote
-/path/to/compute/directory/pkgName
+mkdir /remote/path/pkgName
 ```
 
-Finally, to connect the two, I use the following command that is pretty much identical to initiating a normal ssh session.
+Finally, to connect the two, I use the following command that is pretty much identical to initiating a normal SSH session.
 
 ```bash
 # on local
-sshfs username@remote.host.com:/path/to/compute/directory/pkgName ~/Lab_Projects/pkgName
+sshfs username@remote.host.com:/remote/path/pkgName ~/local/path/pkgName
 ```
 
 Now, the computer will treat the mount just like a normal flash drive, and ST3 fully accepts it. The only change I made to ST3 was to map a key-binding to "Project/Refresh Folders". This way, if new files are created remotely, a quick key-stroke and everything is visible in the ST3 sidebar.
@@ -131,12 +131,12 @@ Now, the computer will treat the mount just like a normal flash drive, and ST3 f
 
 ### Git and GitHub
 
-If working remotely, I have found it much easier to handle everything git-related on the remote side. Therefore, I created  ssh RSA keys and shared the public one with the GitHub repo so I could push over ssh. Setting this up is pretty simple and well outlined in [Connecting to GitHub with SSH](https://help.github.com/en/articles/connecting-to-github-with-ssh).
+If working remotely, I have found it much easier to handle everything git-related on the remote side. Therefore, I created  SSH RSA keys and shared the public one with the GitHub repository so I could push over SSH. Setting this up is pretty simple and well outlined in [Connecting to GitHub with SSH](https://help.github.com/en/articles/connecting-to-github-with-SSH).
 
 
 ## Extras
 
-Though these next few items are not required, I *highly recommend* implementing them because they each take advantage of the fact that this project adheres to the standard R framework. Their different functions are all reasons to go through the trouble of mainting this framework.
+Though these next few items are not required, I *highly recommend* implementing them because they each take advantage of the fact that this project adheres to the standard R framework. Their different functions are all reasons to go through the trouble of maintaining this framework.
 
 ### pkgdown
 
@@ -163,7 +163,7 @@ knitr::include_graphics("images/github-pages.png")
 
 ### Travis-CI, Appveyor, and Codecov
 
-GitHub integration also opens up the use of continuous integration (CI) apps. [Travis-CI](https://travis-ci.org) and [Appveyor](https://www.appveyor.com) are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Noteably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
+GitHub integration also opens up the use of continuous integration (CI) apps. [Travis-CI](https://travis-ci.org) and [Appveyor](https://www.appveyor.com) are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Notably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
 
 [Codecov](https://codecov.io) provides an indication as to how well the package's tests cover the code. Though not a perfect measure of test quality (nothing ever will be), I find this tool to be helpful for me to find which functions I have and have not created tests for.
 
@@ -173,13 +173,45 @@ usethis::use_coverage("codecov")
 usethis::use_appveyor()
 ```
 
-You then just follow the instructions printed out to get everything set up. If this your first time useing any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
+You then just follow the instructions printed out to get everything set up. If this your first time using any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
 
-The usethis command will also procuce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is sstandard practice and will tell pkgdown to put them in the side bar of the site.
+The usethis command will also produce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is standard practice and will tell pkgdown to put them in the side bar of the site.
 
-On top of looking good and being informative for you during the development process, these badges will also provide visitors an indication as to the quality and maintaince of the package. A few good badges will likely make visitors more trusting of your results.
+On top of looking good and being informative for you during the development process, these badges will also provide visitors an indication as to the quality and maintenance  of the package. A few good badges will likely make visitors more trusting of your results.
 
 
 ### Spelling
 
-TODO
+I need not explain why a spell check is useful. Shockingly, this is easy to implement with a usethis function.
+
+```{r, eval = FALSE}
+usethis::use_spell_check()
+```
+
+From then on, spelling can easily be checking using the [spelling](https://github.com/ropensci/spelling) package.
+
+```{r, eval = FALSE}
+# check spelling package-wide
+spelling::spell_check_package()
+# check spelling in specific files
+spelling::spell_check_files("README.Rmd")  # ignores code chunks
+```
+
+After making corrections, there are likely still words that are correct but not in the dictionary used by the package. These can be added to a package-specific word-list.
+
+```{r, eval = FALSE}
+spelling::update_wordlist()
+```
+
+To skip the confirmation after the above command, use the parameter `confirm = TRUE`.
+
+There is also the option to integrate spelling into the testing process such that it runs automatically anytime the package is checked.
+
+```{r, eval = FALSE}
+spelling::spell_check_setup()
+```
+
+
+## Conclusion
+
+Setting up a R package is actually pretty easy, flexible, and customizable. It is also amendable to change later on (especially because of the usethis package), so there is not need to fret about making it perfect - pieces can always be added later.
