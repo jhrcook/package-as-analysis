@@ -166,11 +166,6 @@ All that you have to do from there is use `pkgdown::build_site()` to build the s
 To show the website on GitHub, go to "Settings" in the repository, and select "master branch /docs folder" from the options in the "GitHub Pages" section. It should look something like this (another shameless plug for lil' ole' ggasym).
 
 
-```r
-knitr::include_graphics("images/github-pages.png")
-```
-
-<img src="images/github-pages.png" width="1510" />
 
 ### Travis-CI, Appveyor, and Codecov
 
