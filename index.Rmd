@@ -60,7 +60,7 @@ I am a classically-trained biologist-turned computational biologist. I graduated
 
 ## Resources {-}
 
-The best resource for making R packages is [R Packages](http://r-pkgs.had.co.nz) by Hadley Wickham.
+The best resource for making R packages is [R Packages](https://r-pkgs.org/index.html) by Hadley Wickham.
 
 There are some useful R packages you will want to have installed:
 

@@ -1,6 +1,6 @@
 # Getting Started
 
-Setting up the package is mostly automated and is well documented in [R Packages](http://r-pkgs.had.co.nz/intro.html) by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using [RStudio](https://www.rstudio.com) (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.
+Setting up the package is mostly automated and is well documented in [R Packages](https://r-pkgs.org/index.html) by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using [RStudio](https://www.rstudio.com) (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.
 
 ## R Package Set Up
 
@@ -131,7 +131,7 @@ Now, the computer will treat the mount just like a normal flash drive, and ST3 f
 
 ### Git and GitHub
 
-If working remotely, I have found it much easier to handle everything git-related on the remote side. Therefore, I created  SSH RSA keys and shared the public one with the GitHub repository so I could push over SSH. Setting this up is pretty simple and well outlined in [Connecting to GitHub with SSH](https://help.github.com/en/articles/connecting-to-github-with-SSH).
+If working remotely, I have found it much easier to handle everything git-related on the remote side. Therefore, I created SSH RSA keys and shared the public one with the GitHub repository so I could push over SSH. Setting this up is pretty simple and well outlined in [Connecting to GitHub with SSH](https://help.github.com/en/articles/connecting-to-github-with-SSH).
 
 
 ## Extras
