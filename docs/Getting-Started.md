@@ -15,7 +15,7 @@ It's easy to create the package from the R console.
 usethis::create("path/to/package/pkgname")
 ```
 
-You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses [choosealicense.com](https://choosealicense.com).
+You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at [choosealicense.com](https://choosealicense.com).
 
 
 ```r
@@ -143,15 +143,54 @@ If working remotely, I have found it much easier to handle everything git-relate
 
 ## Extras
 
-TODO
+Though these next few items are not required, I *highly recommend* implementing them because they each take advantage of the fact that this project adheres to the standard R framework. Their different functions are all reasons to go through the trouble of mainting this framework.
 
 ### pkgdown
 
-TODO
+Pkgdown ties a bow around your package, slaps it on the bottom, and builds a gorgeous and professional website rich with useful features. It builds the documentation for easy reference, presents the vignettes, and organizes all of the package meta-data so it is easily viewable and understandable. Here are some packages that take advantage of pkgdown:
 
-### Travis-CL, Apveyor, and Codecov
+* [pkgdown](https://pkgdown.r-lib.org) (of course)
+* [ggplot2](https://ggplot2.tidyverse.org)
+* [ggsci](https://nanx.me/ggsci/)
+* [ggasym](https://jhrcook.github.io/ggasym/index.html) (a shameless plug of my own lil' package)
 
-TODO
+The use of pkgdown obviously begins with a usethis function.
+
+
+```r
+usethis::use_pkgdown()
+```
+
+All that you have to do from there is use `pkgdown::build_site()` to build the site whenever the project is at a good stopping point for the day. (If working remotely, pass `preview = FALSE` to prevent pkgdown from searching for a browser to display in when completed.)
+
+To show the website on GitHub, go to "Settings" in the repository, and select "master branch /docs folder" from the options in the "GitHub Pages" section. It should look something like this (another shameless plug for lil' ole' ggasym).
+
+
+```r
+knitr::include_graphics("images/github-pages.png")
+```
+
+<img src="images/github-pages.png" width="1510" />
+
+### Travis-CI, Appveyor, and Codecov
+
+GitHub integration also opens up the use of continuous integration (CI) apps. [Travis-CI](https://travis-ci.org) and [Appveyor](https://www.appveyor.com) are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Noteably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
+
+[Codecov](https://codecov.io) provides an indication as to how well the package's tests cover the code. Though not a perfect measure of test quality (nothing ever will be), I find this tool to be helpful for me to find which functions I have and have not created tests for.
+
+
+```r
+usethis::use_travis()
+usethis::use_coverage("codecov")
+usethis::use_appveyor()
+```
+
+You then just follow the instructions printed out to get everything set up. If this your first time useing any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
+
+The usethis command will also procuce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is sstandard practice and will tell pkgdown to put them in the side bar of the site.
+
+On top of looking good and being informative for you during the development process, these badges will also provide visitors an indication as to the quality and maintaince of the package. A few good badges will likely make visitors more trusting of your results.
+
 
 ### Spelling
 

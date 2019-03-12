@@ -39,7 +39,7 @@ There are many advantages to using this framework. Here are just a few, though I
 * The implementation of tests on functions and subroutines will make bugs easier to find and increase overall confidence in the validity of the analysis
 * This is a seamless mixture of scripts and markdown files for the separation of functions and analysis
 * Complete documentation of functions makes returning to code later much easier!
-* The analysis can take advantage of normal R package tools such as [Travis-CL](https://travis-ci.org) and [Codecov](https://codecov.io) integration, [pkgdown](https://pkgdown.r-lib.org), and [devtools](https://devtools.r-lib.org) (build checks, documentation, etc.).
+* The analysis can take advantage of normal R package tools such as [Travis-CI](https://travis-ci.org) and [Codecov](https://codecov.io) integration, [pkgdown](https://pkgdown.r-lib.org), and [devtools](https://devtools.r-lib.org) (build checks, documentation, etc.).
 
 
 ### Examples {-}

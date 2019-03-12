@@ -171,7 +171,7 @@ There are many advantages to using this framework. Here are just a few, though I
 \item
   Complete documentation of functions makes returning to code later much easier!
 \item
-  The analysis can take advantage of normal R package tools such as \href{https://travis-ci.org}{Travis-CL} and \href{https://codecov.io}{Codecov} integration, \href{https://pkgdown.r-lib.org}{pkgdown}, and \href{https://devtools.r-lib.org}{devtools} (build checks, documentation, etc.).
+  The analysis can take advantage of normal R package tools such as \href{https://travis-ci.org}{Travis-CI} and \href{https://codecov.io}{Codecov} integration, \href{https://pkgdown.r-lib.org}{pkgdown}, and \href{https://devtools.r-lib.org}{devtools} (build checks, documentation, etc.).
 \end{itemize}
 
 \hypertarget{examples}{%
@@ -232,6 +232,41 @@ These can be installed using the following code.
 
 This work is under a \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)}
 
+\hypertarget{framework}{%
+\chapter{Framework}\label{framework}}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+I have decided to introduce the R packagge framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader's focus, here.
+
+I try to adhere to the following process for each peace of the framework:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  what is it and what is its main role?
+\item
+  when does it need to be used or adjusted?
+\item
+  what is unique about its use for a data analysis project?
+\end{enumerate}
+
+{[}TODO{]}
+
+Include a subsetion on each main peice of package:
+
+\begin{itemize}
+\tightlist
+\item
+  what is it for
+\item
+  things to be wary of
+\item
+  specific use for data analysis
+\end{itemize}
+
 \hypertarget{getting-started}{%
 \chapter{Getting Started}\label{getting-started}}
 
@@ -252,7 +287,7 @@ It's easy to create the package from the R console.
 \end{Highlighting}
 \end{Shaded}
 
-You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses \href{https://choosealicense.com}{choosealicense.com}.
+You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at \href{https://choosealicense.com}{choosealicense.com}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -408,37 +443,73 @@ If working remotely, I have found it much easier to handle everything git-relate
 \hypertarget{extras}{%
 \section{Extras}\label{extras}}
 
-TODO
+Though these next few items are not required, I \emph{highly recommend} implementing them because they each take advantage of the fact that this project adheres to the standard R framework. Their different functions are all reasons to go through the trouble of mainting this framework.
 
 \hypertarget{pkgdown}{%
 \subsection{pkgdown}\label{pkgdown}}
 
-TODO
+Pkgdown ties a bow around your package, slaps it on the bottom, and builds a gorgeous and professional website rich with useful features. It builds the documentation for easy reference, presents the vignettes, and organizes all of the package meta-data so it is easily viewable and understandable. Here are some packages that take advantage of pkgdown:
 
-\hypertarget{travis-cl-apveyor-and-codecov}{%
-\subsection{Travis-CL, Apveyor, and Codecov}\label{travis-cl-apveyor-and-codecov}}
+\begin{itemize}
+\tightlist
+\item
+  \href{https://pkgdown.r-lib.org}{pkgdown} (of course)
+\item
+  \href{https://ggplot2.tidyverse.org}{ggplot2}
+\item
+  \href{https://nanx.me/ggsci/}{ggsci}
+\item
+  \href{https://jhrcook.github.io/ggasym/index.html}{ggasym} (a shameless plug of my own lil' package)
+\end{itemize}
 
-TODO
+The use of pkgdown obviously begins with a usethis function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_pkgdown}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+All that you have to do from there is use \texttt{pkgdown::build\_site()} to build the site whenever the project is at a good stopping point for the day. (If working remotely, pass \texttt{preview\ =\ FALSE} to prevent pkgdown from searching for a browser to display in when completed.)
+
+To show the website on GitHub, go to ``Settings'' in the repository, and select ``master branch /docs folder'' from the options in the ``GitHub Pages'' section. It should look something like this (another shameless plug for lil' ole' ggasym).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"images/github-pages.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=20.97in]{images/github-pages}
+
+\hypertarget{travis-ci-appveyor-and-codecov}{%
+\subsection{Travis-CI, Appveyor, and Codecov}\label{travis-ci-appveyor-and-codecov}}
+
+GitHub integration also opens up the use of continuous integration (CI) apps. \href{https://travis-ci.org}{Travis-CI} and \href{https://www.appveyor.com}{Appveyor} are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Noteably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
+
+\href{https://codecov.io}{Codecov} provides an indication as to how well the package's tests cover the code. Though not a perfect measure of test quality (nothing ever will be), I find this tool to be helpful for me to find which functions I have and have not created tests for.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_travis}\NormalTok{()}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_coverage}\NormalTok{(}\StringTok{"codecov"}\NormalTok{)}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_appveyor}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+You then just follow the instructions printed out to get everything set up. If this your first time useing any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
+
+The usethis command will also procuce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is sstandard practice and will tell pkgdown to put them in the side bar of the site.
+
+On top of looking good and being informative for you during the development process, these badges will also provide visitors an indication as to the quality and maintaince of the package. A few good badges will likely make visitors more trusting of your results.
 
 \hypertarget{spelling}{%
 \subsection{Spelling}\label{spelling}}
 
 TODO
 
-\hypertarget{framework}{%
-\chapter{Framework}\label{framework}}
-
-Include a subsetion on each main peice of package:
-
-\begin{itemize}
-\tightlist
-\item
-  what is it for
-\item
-  things to be wary of
-\item
-  specific use for data analysis
-\end{itemize}
+\hypertarget{workflow}{%
+\chapter{Workflow}\label{workflow}}
 
 \hypertarget{example-allele-specific-kras-cna}{%
 \chapter{\texorpdfstring{Example: Allele-specific \emph{KRAS} CNA}{Example: Allele-specific KRAS CNA}}\label{example-allele-specific-kras-cna}}
