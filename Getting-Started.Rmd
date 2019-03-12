@@ -4,17 +4,66 @@ Setting up the package is mostly automated and is well documented in [R Packages
 
 ## R Package Set Up
 
-TODO
+The set up process is rather simple. If using RStudio, you can start a new R project as a package. Otherwise, the following command will get the basic framework started. There is a lot of overlap between the devtools and usethis package. I believe that RStudio is trying to fade out devtools and instead have people use the various packages that were split from it, including usethis.
+
+The advantage to using the usethis functions for seemingly simple tasks (such as making the "data-raw" directory) is that it will also add the necessary lines to ".RBuildignore," the "DESCRIPTION," and "NAMESPACE" if needed.
+
+It's easy to create the package from the R console.
+
+```{r, eval = FALSE}
+usethis::create("path/to/package/pkgname")
+```
+
+You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses [choosealicense.com](https://choosealicense.com).
+
+```{r eval = FALSE}
+usethis::use_gpl3_license(name = "Your Name")
+```
+
+Prepare the project to use roxygen for documentation.
+
+```{r, eval = FALSE}
+usethis::use_roxygen_md()
+```
+
+Create a README file. You can also opt to use a normal Markdown file with `usethis::use_readme_md()`, though I would recommend to just go with an RMarkdown file.
+
+```{r, eval = FALSE}
+usethis::use_readme_rmd()
+```
+
+Create a "NEWS" file for announcing major changes to the project.
+
+```{r, eval = FALSE}
+usethis::use_news_md()
+```
+
+Create a "data-raw" directory.
+
+```{r, eval = FALSE}
+usethis::use_data_raw()
+```
+
+Finally, set up the use of testthat package for testing.
+
+```{r, eval = FALSE}
+usethis::use_testthat()
+```
+
+**Note:** If you are working remotely (ie. sshing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (eg. open "NEWS.md" after using `use_news_md()`) in vim. To suppress this, just pass the paramter `open = FALSE`. Otherwise, it is set to `interactive()`.
+
 
 ### Git and GitHub
 
-If your are programming, you should be using git. This is especially important in the sciences because git logs can be used to resolve legal conflicts and issues of data falsification. GitHub is not essential, though I would highly recommend you use it because it makes managing files and collaboration much easier. It is also essential for taking advantage of some of the best parts of an R package such as build checks and `pkgdown` (see Extras below)
+If you are programming, you should be using git. This is especially important in the sciences because git logs can be used to resolve legal conflicts and issues of data falsification. GitHub is not essential, though I would highly recommend you use it because it makes managing files and collaboration much easier. It is also essential for taking advantage of some of the best parts of an R package such as build checks and `pkgdown` (see Extras below)
 
 To get started with git, there are *tons* of resources available, so I will not describe it here. If you are new to git and GitHub, here are a few good resources to get you started:
 
 * [An introduction to Git: what it is, and how to use it](https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61)
 * [How To Use Git: A Reference Guide](https://www.digitalocean.com/community/tutorials/how-to-use-git-a-reference-guide)
 * [GitHub Guides: Hello World](https://guides.github.com/activities/hello-world/)
+
+There is a usethis function to initiate git (`usethis::use_git()`) though I always prefer to set up myself.
 
 
 ## Remote

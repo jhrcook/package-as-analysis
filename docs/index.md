@@ -5,7 +5,7 @@ url: 'https\://jhrcook.github.io/package-as-analysis/.'
 github-repo: jhrcook/package-as-analysis
 twitter-handle: JoshDoesa
 cover-image: cover.png
-date: "2019-03-10"
+date: "2019-03-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
@@ -46,7 +46,7 @@ There are many advantages to using this framework. Here are just a few, though I
 
 [coming soon] Allele-specific *KRAS* copy number alteration
 
-## About
+## About {-}
 
 ### About this Book {-}
 
