@@ -333,17 +333,20 @@ The advantage to using the usethis functions for seemingly simple tasks
 necessary lines to ``.RBuildignore,'' the ``DESCRIPTION,'' and
 ``NAMESPACE'' if needed.
 
-It's easy to create the package from the R console.
+It's easy to create the package from the R console, just replace the
+directory path in the following example with your desired directory.
+Usethis will \emph{creat} the ``ExampleAnalysisPackage'' directory - do
+not make this directory beforehand.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{usethis}\OperatorTok{::}\KeywordTok{create_package}\NormalTok{(}\StringTok{"path/to/package/ExampleAnalysisPackage"}\NormalTok{)}
-\CommentTok{#> ✔ Setting active project to 'path/to/package/ExampleAnalysisPackage'}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{create_package}\NormalTok{(}\StringTok{"/path/to/pkg/ExampleAnalysisPackage"}\NormalTok{)}
+\CommentTok{#> ✔ Setting active project to 'p/path/to/pkg/ExampleAnalysisPackage'}
 \CommentTok{#> ✔ Creating 'R/'}
 \CommentTok{#> ✔ Creating 'man/'}
 \CommentTok{#> ✔ Writing 'DESCRIPTION'}
 \CommentTok{#> ✔ Writing 'NAMESPACE'}
-\CommentTok{#> ✔ Changing working directory to 'path/to/package/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Changing working directory to '/path/to/pkg/ExampleAnalysisPackage'}
 \end{Highlighting}
 \end{Shaded}
 
@@ -354,7 +357,7 @@ though you can get a lot of information on the common licenses at
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_gpl3_license}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Your Name"}\NormalTok{)}
-\CommentTok{#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'}
 \CommentTok{#> ✔ Setting License field in DESCRIPTION to 'GPL-3'}
 \CommentTok{#> ✔ Writing 'LICENSE.md'}
 \CommentTok{#> ✔ Adding '^LICENSE\textbackslash{}\textbackslash{}.md$' to '.Rbuildignore'}
@@ -652,8 +655,8 @@ plug for lil' ole' ggasym).
 \subsection{Travis-CI, Appveyor, and
 Codecov}\label{travis-ci-appveyor-and-codecov}
 
-\textbf{TODO:} To use these, GitHub must be set up -- make a github repo
-for the fake package
+\textbf{Note:} To use these, you must have a GitHub repository that you
+have push to.
 
 GitHub integration also opens up the use of continuous integration (CI)
 apps. \href{https://travis-ci.org}{Travis-CI} and
@@ -671,15 +674,47 @@ find which functions I have and have not created tests for.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_travis}\NormalTok{()}
-\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_coverage}\NormalTok{(}\StringTok{"codecov"}\NormalTok{)}
-\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_appveyor}\NormalTok{()}
+\CommentTok{#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Writing '.travis.yml'}
+\CommentTok{#> ✔ Adding '^\textbackslash{}\textbackslash{}.travis\textbackslash{}\textbackslash{}.yml$' to '.Rbuildignore'}
+\CommentTok{#> ● Turn on travis for your repo at https://travis-ci.org/profile/jhrcook}
+\CommentTok{#> ● Add a Travis build status badge by adding the following line to your README:}
+\CommentTok{#> Copying code to clipboard:}
+\CommentTok{#>   [![Travis build status](https://travis-ci.org/jhrcook/ExampleAnalysisPackage.svg?branch=master)](https://travis-ci.org/jhrcook/ExampleAnalysisPackage)}
 \end{Highlighting}
 \end{Shaded}
 
-You then just follow the instructions printed out to get everything set
-up. If this your first time using any of the tools, then you will have
-to grant them access to your GitHub repositories, and they will do the
-rest.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_appveyor}\NormalTok{()}
+\CommentTok{#> ✔ Writing 'appveyor.yml'}
+\CommentTok{#> ✔ Adding '^appveyor\textbackslash{}\textbackslash{}.yml$' to '.Rbuildignore'}
+\CommentTok{#> ● Turn on AppVeyor for this repo at https://ci.appveyor.com/projects/new}
+\CommentTok{#> ● Add a AppVeyor build status badge by adding the following line to your README:}
+\CommentTok{#> Copying code to clipboard:}
+\CommentTok{#>   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ExampleAnalysisPackage?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ExampleAnalysisPackage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_coverage}\NormalTok{(}\StringTok{"codecov"}\NormalTok{)}
+\CommentTok{#> ✔ Adding 'covr' to Suggests field in DESCRIPTION}
+\CommentTok{#> ✔ Writing 'codecov.yml'}
+\CommentTok{#> ✔ Adding '^codecov\textbackslash{}\textbackslash{}.yml$' to '.Rbuildignore'}
+\CommentTok{#> ● Add a Coverage status badge by adding the following line to your README:}
+\CommentTok{#> Copying code to clipboard:}
+\CommentTok{#>   [![Coverage status](https://codecov.io/gh/jhrcook/ExampleAnalysisPackage/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ExampleAnalysisPackage?branch=master)}
+\CommentTok{#> ● Add to '.travis.yml':}
+\CommentTok{#> Copying code to clipboard:}
+\CommentTok{#>   after_success:}
+\CommentTok{#>     - Rscript -e 'covr::codecov()'}
+\end{Highlighting}
+\end{Shaded}
+
+Just follow the instructions printed out to get everything set up. If
+this your first time using any of the tools, then you will have to grant
+them access to your GitHub repositories, and they will do the rest.
 
 The usethis command will also produce the markdown code for showing the
 status badges for each tools. Placing these below the package name in
@@ -699,6 +734,11 @@ to implement with a usethis function.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_spell_check}\NormalTok{()}
+\CommentTok{#> ✔ Adding 'spelling' to Suggests field in DESCRIPTION}
+\CommentTok{#> ✔ Setting Language field in DESCRIPTION to 'en-US'}
+\CommentTok{#> No changes required to /path/to/pkg/ExampleAnalysisPackage/inst/WORDLIST}
+\CommentTok{#> Updated /path/to/pkg/ExampleAnalysisPackage/tests/spelling.R}
+\CommentTok{#> ● Run `devtools::check()` to trigger spell check}
 \end{Highlighting}
 \end{Shaded}
 
@@ -742,6 +782,9 @@ Setting up a R package is actually pretty easy, flexible, and
 customizable. It is also amendable to change later on (especially
 because of the usethis package), so there is not need to fret about
 making it perfect - pieces can always be added later.
+
+\textbf{Note:} At this point, the package is unlikely to pass checks
+because there are no tests.
 
 \chapter{Workflow}\label{workflow}
 

@@ -8,17 +8,17 @@ The set up process is rather simple. If using RStudio, you can start a new R pro
 
 The advantage to using the usethis functions for seemingly simple tasks (such as making the "data-raw" directory) is that it will also add the necessary lines to ".RBuildignore," the "DESCRIPTION," and "NAMESPACE" if needed.
 
-It's easy to create the package from the R console.
+It's easy to create the package from the R console, just replace the directory path in the following example with your desired directory. Usethis will *creat* the "ExampleAnalysisPackage" directory - do not make this directory beforehand.
 
 
 ```r
-usethis::create_package("path/to/package/ExampleAnalysisPackage")
-#> ✔ Setting active project to 'path/to/package/ExampleAnalysisPackage'
+usethis::create_package("/path/to/pkg/ExampleAnalysisPackage")
+#> ✔ Setting active project to 'p/path/to/pkg/ExampleAnalysisPackage'
 #> ✔ Creating 'R/'
 #> ✔ Creating 'man/'
 #> ✔ Writing 'DESCRIPTION'
 #> ✔ Writing 'NAMESPACE'
-#> ✔ Changing working directory to 'path/to/package/ExampleAnalysisPackage'
+#> ✔ Changing working directory to '/path/to/pkg/ExampleAnalysisPackage'
 ```
 
 You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at [choosealicense.com](https://choosealicense.com).
@@ -26,7 +26,7 @@ You can then add a license as shown below. I generally use a GPL-3, though you c
 
 ```r
 usethis::use_gpl3_license(name = "Your Name")
-#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'
+#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'
 #> ✔ Setting License field in DESCRIPTION to 'GPL-3'
 #> ✔ Writing 'LICENSE.md'
 #> ✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
@@ -212,7 +212,7 @@ To show the website on GitHub, go to "Settings" in the repository, and select "m
 
 ### Travis-CI, Appveyor, and Codecov
 
-**TODO:** To use these, GitHub must be set up -- make a github repo for the fake package
+**Note:** To use these, you must have a GitHub repository that you have push to.
 
 GitHub integration also opens up the use of continuous integration (CI) apps. [Travis-CI](https://travis-ci.org) and [Appveyor](https://www.appveyor.com) are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Notably, Appveyor build the package on Linux and Windows. To get started, just use usethis.
 
@@ -221,11 +221,42 @@ GitHub integration also opens up the use of continuous integration (CI) apps. [T
 
 ```r
 usethis::use_travis()
-usethis::use_coverage("codecov")
-usethis::use_appveyor()
+#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'
+#> ✔ Writing '.travis.yml'
+#> ✔ Adding '^\\.travis\\.yml$' to '.Rbuildignore'
+#> ● Turn on travis for your repo at https://travis-ci.org/profile/jhrcook
+#> ● Add a Travis build status badge by adding the following line to your README:
+#> Copying code to clipboard:
+#>   [![Travis build status](https://travis-ci.org/jhrcook/ExampleAnalysisPackage.svg?branch=master)](https://travis-ci.org/jhrcook/ExampleAnalysisPackage)
 ```
 
-You then just follow the instructions printed out to get everything set up. If this your first time using any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
+
+```r
+usethis::use_appveyor()
+#> ✔ Writing 'appveyor.yml'
+#> ✔ Adding '^appveyor\\.yml$' to '.Rbuildignore'
+#> ● Turn on AppVeyor for this repo at https://ci.appveyor.com/projects/new
+#> ● Add a AppVeyor build status badge by adding the following line to your README:
+#> Copying code to clipboard:
+#>   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ExampleAnalysisPackage?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ExampleAnalysisPackage)
+```
+
+
+```r
+usethis::use_coverage("codecov")
+#> ✔ Adding 'covr' to Suggests field in DESCRIPTION
+#> ✔ Writing 'codecov.yml'
+#> ✔ Adding '^codecov\\.yml$' to '.Rbuildignore'
+#> ● Add a Coverage status badge by adding the following line to your README:
+#> Copying code to clipboard:
+#>   [![Coverage status](https://codecov.io/gh/jhrcook/ExampleAnalysisPackage/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ExampleAnalysisPackage?branch=master)
+#> ● Add to '.travis.yml':
+#> Copying code to clipboard:
+#>   after_success:
+#>     - Rscript -e 'covr::codecov()'
+```
+
+Just follow the instructions printed out to get everything set up. If this your first time using any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.
 
 The usethis command will also produce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is standard practice and will tell pkgdown to put them in the side bar of the site.
 
@@ -239,6 +270,11 @@ I need not explain why a spell check is useful. Shockingly, this is easy to impl
 
 ```r
 usethis::use_spell_check()
+#> ✔ Adding 'spelling' to Suggests field in DESCRIPTION
+#> ✔ Setting Language field in DESCRIPTION to 'en-US'
+#> No changes required to /path/to/pkg/ExampleAnalysisPackage/inst/WORDLIST
+#> Updated /path/to/pkg/ExampleAnalysisPackage/tests/spelling.R
+#> ● Run `devtools::check()` to trigger spell check
 ```
 
 From then on, spelling can easily be checking using the [spelling](https://github.com/ropensci/spelling) package.
@@ -271,3 +307,5 @@ spelling::spell_check_setup()
 ## Conclusion
 
 Setting up a R package is actually pretty easy, flexible, and customizable. It is also amendable to change later on (especially because of the usethis package), so there is not need to fret about making it perfect - pieces can always be added later.
+
+**Note:** At this point, the package is unlikely to pass checks because there are no tests.

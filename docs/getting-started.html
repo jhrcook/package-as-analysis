@@ -11,8 +11,8 @@
 
   <meta property="og:title" content="2 Getting Started | Package as Analysis" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://jhrcook.github.io/package-as-analysis/." />
-  <meta property="og:image" content="https://jhrcook.github.io/package-as-analysis/.cover.png" />
+  <meta property="og:url" content="https://jhrcook.github.io/package-as-analysis/" />
+  <meta property="og:image" content="https://jhrcook.github.io/package-as-analysis/cover.png" />
   <meta property="og:description" content="This is a manual for how to conduct data science analysis using the standard R package framework." />
   <meta name="github-repo" content="jhrcook/package-as-analysis" />
 
@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="2 Getting Started | Package as Analysis" />
   <meta name="twitter:site" content="@JoshDoesa" />
   <meta name="twitter:description" content="This is a manual for how to conduct data science analysis using the standard R package framework." />
-  <meta name="twitter:image" content="https://jhrcook.github.io/package-as-analysis/.cover.png" />
+  <meta name="twitter:image" content="https://jhrcook.github.io/package-as-analysis/cover.png" />
 
 <meta name="author" content="Joshua H. Cook">
 
@@ -165,17 +165,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.1</span> R Package Set Up</h2>
 <p>The set up process is rather simple. If using RStudio, you can start a new R project as a package. Otherwise, the following command will get the basic framework started. There is a lot of overlap between the devtools and usethis package. I believe that RStudio is trying to fade out devtools and instead have people use the various packages that were split from it, including usethis.</p>
 <p>The advantage to using the usethis functions for seemingly simple tasks (such as making the “data-raw” directory) is that it will also add the necessary lines to “.RBuildignore,” the “DESCRIPTION,” and “NAMESPACE” if needed.</p>
-<p>It’s easy to create the package from the R console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&quot;path/to/package/ExampleAnalysisPackage&quot;</span>)
-<span class="co">#&gt; ✔ Setting active project to &#39;path/to/package/ExampleAnalysisPackage&#39;</span>
+<p>It’s easy to create the package from the R console, just replace the directory path in the following example with your desired directory. Usethis will <em>creat</em> the “ExampleAnalysisPackage” directory - do not make this directory beforehand.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&quot;/path/to/pkg/ExampleAnalysisPackage&quot;</span>)
+<span class="co">#&gt; ✔ Setting active project to &#39;p/path/to/pkg/ExampleAnalysisPackage&#39;</span>
 <span class="co">#&gt; ✔ Creating &#39;R/&#39;</span>
 <span class="co">#&gt; ✔ Creating &#39;man/&#39;</span>
 <span class="co">#&gt; ✔ Writing &#39;DESCRIPTION&#39;</span>
 <span class="co">#&gt; ✔ Writing &#39;NAMESPACE&#39;</span>
-<span class="co">#&gt; ✔ Changing working directory to &#39;path/to/package/ExampleAnalysisPackage&#39;</span></code></pre></div>
+<span class="co">#&gt; ✔ Changing working directory to &#39;/path/to/pkg/ExampleAnalysisPackage&#39;</span></code></pre></div>
 <p>You can then add a license as shown below. I generally use a GPL-3, though you can get a lot of information on the common licenses at <a href="https://choosealicense.com">choosealicense.com</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_gpl3_license</span>(<span class="dt">name =</span> <span class="st">&quot;Your Name&quot;</span>)
-<span class="co">#&gt; ✔ Setting active project to &#39;/Users/admin/Documents/R/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ✔ Setting active project to &#39;/path/to/pkg/ExampleAnalysisPackage&#39;</span>
 <span class="co">#&gt; ✔ Setting License field in DESCRIPTION to &#39;GPL-3&#39;</span>
 <span class="co">#&gt; ✔ Writing &#39;LICENSE.md&#39;</span>
 <span class="co">#&gt; ✔ Adding &#39;^LICENSE\\.md$&#39; to &#39;.Rbuildignore&#39;</span></code></pre></div>
@@ -298,20 +298,48 @@ $0
 </div>
 <div id="travis-ci-appveyor-and-codecov" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Travis-CI, Appveyor, and Codecov</h3>
-<p><strong>TODO:</strong> To use these, GitHub must be set up – make a github repo for the fake package</p>
+<p><strong>Note:</strong> To use these, you must have a GitHub repository that you have push to.</p>
 <p>GitHub integration also opens up the use of continuous integration (CI) apps. <a href="https://travis-ci.org">Travis-CI</a> and <a href="https://www.appveyor.com">Appveyor</a> are useful for checking the build status of the package. I just use both because they each require so little effort to integrate and each provides their own suite of functions. Notably, Appveyor build the package on Linux and Windows. To get started, just use usethis.</p>
 <p><a href="https://codecov.io">Codecov</a> provides an indication as to how well the package’s tests cover the code. Though not a perfect measure of test quality (nothing ever will be), I find this tool to be helpful for me to find which functions I have and have not created tests for.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_travis</span>()
-usethis<span class="op">::</span><span class="kw">use_coverage</span>(<span class="st">&quot;codecov&quot;</span>)
-usethis<span class="op">::</span><span class="kw">use_appveyor</span>()</code></pre></div>
-<p>You then just follow the instructions printed out to get everything set up. If this your first time using any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.</p>
+<span class="co">#&gt; ✔ Setting active project to &#39;/path/to/pkg/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ✔ Writing &#39;.travis.yml&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^\\.travis\\.yml$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; ● Turn on travis for your repo at https://travis-ci.org/profile/jhrcook</span>
+<span class="co">#&gt; ● Add a Travis build status badge by adding the following line to your README:</span>
+<span class="co">#&gt; Copying code to clipboard:</span>
+<span class="co">#&gt;   [![Travis build status](https://travis-ci.org/jhrcook/ExampleAnalysisPackage.svg?branch=master)](https://travis-ci.org/jhrcook/ExampleAnalysisPackage)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_appveyor</span>()
+<span class="co">#&gt; ✔ Writing &#39;appveyor.yml&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^appveyor\\.yml$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; ● Turn on AppVeyor for this repo at https://ci.appveyor.com/projects/new</span>
+<span class="co">#&gt; ● Add a AppVeyor build status badge by adding the following line to your README:</span>
+<span class="co">#&gt; Copying code to clipboard:</span>
+<span class="co">#&gt;   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ExampleAnalysisPackage?branch=master&amp;svg=true)](https://ci.appveyor.com/project/jhrcook/ExampleAnalysisPackage)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_coverage</span>(<span class="st">&quot;codecov&quot;</span>)
+<span class="co">#&gt; ✔ Adding &#39;covr&#39; to Suggests field in DESCRIPTION</span>
+<span class="co">#&gt; ✔ Writing &#39;codecov.yml&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;^codecov\\.yml$&#39; to &#39;.Rbuildignore&#39;</span>
+<span class="co">#&gt; ● Add a Coverage status badge by adding the following line to your README:</span>
+<span class="co">#&gt; Copying code to clipboard:</span>
+<span class="co">#&gt;   [![Coverage status](https://codecov.io/gh/jhrcook/ExampleAnalysisPackage/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ExampleAnalysisPackage?branch=master)</span>
+<span class="co">#&gt; ● Add to &#39;.travis.yml&#39;:</span>
+<span class="co">#&gt; Copying code to clipboard:</span>
+<span class="co">#&gt;   after_success:</span>
+<span class="co">#&gt;     - Rscript -e &#39;covr::codecov()&#39;</span></code></pre></div>
+<p>Just follow the instructions printed out to get everything set up. If this your first time using any of the tools, then you will have to grant them access to your GitHub repositories, and they will do the rest.</p>
 <p>The usethis command will also produce the markdown code for showing the status badges for each tools. Placing these below the package name in the README.Rmd is standard practice and will tell pkgdown to put them in the side bar of the site.</p>
 <p>On top of looking good and being informative for you during the development process, these badges will also provide visitors an indication as to the quality and maintenance of the package. A few good badges will likely make visitors more trusting of your results.</p>
 </div>
 <div id="spelling" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Spelling</h3>
 <p>I need not explain why a spell check is useful. Shockingly, this is easy to implement with a usethis function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_spell_check</span>()
+<span class="co">#&gt; ✔ Adding &#39;spelling&#39; to Suggests field in DESCRIPTION</span>
+<span class="co">#&gt; ✔ Setting Language field in DESCRIPTION to &#39;en-US&#39;</span>
+<span class="co">#&gt; No changes required to /path/to/pkg/ExampleAnalysisPackage/inst/WORDLIST</span>
+<span class="co">#&gt; Updated /path/to/pkg/ExampleAnalysisPackage/tests/spelling.R</span>
+<span class="co">#&gt; ● Run `devtools::check()` to trigger spell check</span></code></pre></div>
 <p>From then on, spelling can easily be checking using the <a href="https://github.com/ropensci/spelling">spelling</a> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check spelling package-wide</span>
 spelling<span class="op">::</span><span class="kw">spell_check_package</span>()
@@ -327,6 +355,7 @@ spelling<span class="op">::</span><span class="kw">spell_check_files</span>(<spa
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">2.4</span> Conclusion</h2>
 <p>Setting up a R package is actually pretty easy, flexible, and customizable. It is also amendable to change later on (especially because of the usethis package), so there is not need to fret about making it perfect - pieces can always be added later.</p>
+<p><strong>Note:</strong> At this point, the package is unlikely to pass checks because there are no tests.</p>
 
 </div>
 </div>
