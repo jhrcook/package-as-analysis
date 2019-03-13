@@ -117,7 +117,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1" data-path="framework.html"><a href="framework.html"><i class="fa fa-check"></i><b>1</b> Framework</a><ul>
 <li class="chapter" data-level="1.1" data-path="framework.html"><a href="framework.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
-<li class="chapter" data-level="1.2" data-path="framework.html"><a href="framework.html#the-r-directory"><i class="fa fa-check"></i><b>1.2</b> The R/ Directory</a></li>
+<li class="chapter" data-level="1.2" data-path="framework.html"><a href="framework.html#vignettes"><i class="fa fa-check"></i><b>1.2</b> Vignettes</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="framework.html"><a href="framework.html#starting-a-vignette"><i class="fa fa-check"></i><b>1.2.1</b> Starting a Vignette</a></li>
+<li class="chapter" data-level="1.2.2" data-path="framework.html"><a href="framework.html#formatting-a-vignette"><i class="fa fa-check"></i><b>1.2.2</b> Formatting a Vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="framework.html"><a href="framework.html#the-r-directory"><i class="fa fa-check"></i><b>1.3</b> The R/ Directory</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="framework.html"><a href="framework.html#normal-use"><i class="fa fa-check"></i><b>1.3.1</b> Normal Use</a></li>
+<li class="chapter" data-level="1.3.2" data-path="framework.html"><a href="framework.html#for-data-analysis"><i class="fa fa-check"></i><b>1.3.2</b> For Data Analysis</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#setting-up-a-r-package"><i class="fa fa-check"></i><b>2.1</b> Setting Up a R Package</a><ul>
@@ -171,9 +178,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>what is unique about its use for a data analysis project?</li>
 </ol>
 </div>
+<div id="vignettes" class="section level2">
+<h2><span class="header-section-number">1.2</span> Vignettes</h2>
+<p>I am starting with vignettes because they are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show the functionality of the package. They are usually user guides or are attempts to inspire potential users.</p>
+<p>However, in a data analysis, the vignettes <em>are</em> the analysis. They are where ideas are formed, discussed, tested, and validated. Everything is centered around a vignette. If you already use R markdown for data analysis, then this should be of little perturbance to your standard operating procedure. If you do not, though, this should be a welcomed change.</p>
+<div id="starting-a-vignette" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Starting a Vignette</h3>
+<p>Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g. analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the usethis function, passing the name of the vignette.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;0101_part1_firstvignette&quot;</span>)
+<span class="co">#&gt; ✔ Setting active project to &#39;/path/to/pkg/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;knitr&#39; to Suggests field in DESCRIPTION</span>
+<span class="co">#&gt; ✔ Setting VignetteBuilder field in DESCRIPTION to &#39;knitr&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;rmarkdown&#39; to Suggests field in DESCRIPTION</span>
+<span class="co">#&gt; ✔ Creating &#39;vignettes/&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;*.html&#39;, &#39;*.R&#39; to &#39;vignettes/.gitignore&#39;</span>
+<span class="co">#&gt; ✔ Adding &#39;inst/doc&#39; to &#39;.gitignore&#39;</span>
+<span class="co">#&gt; ✔ Creating &#39;vignettes/0101_part1_firstvignette.Rmd&#39;</span>
+<span class="co">#&gt; ● Modify &#39;vignettes/0101_part1_firstvignette.Rmd&#39;</span></code></pre></div>
+<p>Notice that the “.Rmd” extension is ommited in the above function - usethis adds the appropriate extensions in most cases.</p>
+<p>It is important to deliberately decide on a naming scheme. I have opted for “(##)(##)_part_subpart&quot; where the leading number is made of two levels followed by the names of the two levels. For the leading number, the first two digits are the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (“part”) is the name referring to the layer of organization dictated by the first two digits of the leading number. The second name (“subpart”) is referring to the layer of organization dictated by the second two digits of the leading number.</p>
+<p>Therefore, the follow-up analysis that follows “0101_part1_firstvignette” could be “0102_part1_secondvignette”. A vignette for another part of the project would alternatively be called “0201_part2_firstvignette”. I now have a two branches of analysis in my project, the first with two pages of analysis and the second with only one.</p>
+</div>
+<div id="formatting-a-vignette" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Formatting a Vignette</h3>
+<p>[TODO]</p>
+</div>
+</div>
 <div id="the-r-directory" class="section level2">
-<h2><span class="header-section-number">1.2</span> The R/ Directory</h2>
+<h2><span class="header-section-number">1.3</span> The R/ Directory</h2>
+<div id="normal-use" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Normal Use</h3>
+<p>The R directory will hold all R scripts (usually files ending with the “.R” extension). For a normal package, this is all of the source code that builds the package.</p>
+</div>
+<div id="for-data-analysis" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> For Data Analysis</h3>
+<p>For the purpose of a data analysis project, this will still hold R scripts (with the “.R” extension), but the organization of scripts is different.</p>
 
+</div>
 </div>
 </div>
             </section>

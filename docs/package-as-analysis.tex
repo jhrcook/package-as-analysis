@@ -303,7 +303,84 @@ framework:
   what is unique about its use for a data analysis project?
 \end{enumerate}
 
+\section{Vignettes}\label{vignettes}
+
+I am starting with vignettes because they are the heart of the data
+analysis. Ironically, they are often covered last in tutorials on
+creating R packages, and rightly so! For an R package, the vignettes
+merely show the functionality of the package. They are usually user
+guides or are attempts to inspire potential users.
+
+However, in a data analysis, the vignettes \emph{are} the analysis. They
+are where ideas are formed, discussed, tested, and validated. Everything
+is centered around a vignette. If you already use R markdown for data
+analysis, then this should be of little perturbance to your standard
+operating procedure. If you do not, though, this should be a welcomed
+change.
+
+\subsection{Starting a Vignette}\label{starting-a-vignette}
+
+Ideally, each vignette will be a different step in the analysis.
+Alternatively, each vignette could be a different part of the project
+(e.g.~analyzing the results of a screen in one vignette and analyzing
+the results of validation experiments in another). However you choose to
+divide up the analysis is your choice (though I have found R markdown
+files to slow down RStudio if they get too long or image intensive). To
+begin a vignette, use the usethis function, passing the name of the
+vignette.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_vignette}\NormalTok{(}\StringTok{"0101_part1_firstvignette"}\NormalTok{)}
+\CommentTok{#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'}
+\CommentTok{#> ✔ Adding 'knitr' to Suggests field in DESCRIPTION}
+\CommentTok{#> ✔ Setting VignetteBuilder field in DESCRIPTION to 'knitr'}
+\CommentTok{#> ✔ Adding 'rmarkdown' to Suggests field in DESCRIPTION}
+\CommentTok{#> ✔ Creating 'vignettes/'}
+\CommentTok{#> ✔ Adding '*.html', '*.R' to 'vignettes/.gitignore'}
+\CommentTok{#> ✔ Adding 'inst/doc' to '.gitignore'}
+\CommentTok{#> ✔ Creating 'vignettes/0101_part1_firstvignette.Rmd'}
+\CommentTok{#> ● Modify 'vignettes/0101_part1_firstvignette.Rmd'}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that the ``.Rmd'' extension is ommited in the above function -
+usethis adds the appropriate extensions in most cases.
+
+It is important to deliberately decide on a naming scheme. I have opted
+for ``(\#\#)(\#\#)\_part\_subpart" where the leading number is made of
+two levels followed by the names of the two levels. For the leading
+number, the first two digits are the highest level of orgnization and
+the second two digits are for the sublevel. For the naming, the first
+name (``part'') is the name referring to the layer of organization
+dictated by the first two digits of the leading number. The second name
+(``subpart'') is referring to the layer of organization dictated by the
+second two digits of the leading number.
+
+Therefore, the follow-up analysis that follows
+``0101\_part1\_firstvignette'' could be ``0102\_part1\_secondvignette''.
+A vignette for another part of the project would alternatively be called
+``0201\_part2\_firstvignette''. I now have a two branches of analysis in
+my project, the first with two pages of analysis and the second with
+only one.
+
+\subsection{Formatting a Vignette}\label{formatting-a-vignette}
+
+{[}TODO{]}
+
 \section{The R/ Directory}\label{the-r-directory}
+
+\subsection{Normal Use}\label{normal-use}
+
+The R directory will hold all R scripts (usually files ending with the
+``.R'' extension). For a normal package, this is all of the source code
+that builds the package.
+
+\subsection{For Data Analysis}\label{for-data-analysis}
+
+For the purpose of a data analysis project, this will still hold R
+scripts (with the ``.R'' extension), but the organization of scripts is
+different.
 
 \chapter{Getting Started}\label{getting-started}
 
