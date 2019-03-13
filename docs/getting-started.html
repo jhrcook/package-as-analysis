@@ -120,10 +120,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="framework.html"><a href="framework.html#the-r-directory"><i class="fa fa-check"></i><b>1.2</b> The R/ Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
-<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#r-package-set-up"><i class="fa fa-check"></i><b>2.1</b> R Package Set Up</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="getting-started.html"><a href="getting-started.html#git-and-github"><i class="fa fa-check"></i><b>2.1.1</b> Git and GitHub</a></li>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#setting-up-a-r-package"><i class="fa fa-check"></i><b>2.1</b> Setting Up a R Package</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="getting-started.html"><a href="getting-started.html#the-basics"><i class="fa fa-check"></i><b>2.1.1</b> The Basics</a></li>
+<li class="chapter" data-level="2.1.2" data-path="getting-started.html"><a href="getting-started.html#git-and-github"><i class="fa fa-check"></i><b>2.1.2</b> Git and GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#remote"><i class="fa fa-check"></i><b>2.2</b> Remote</a><ul>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#working-remotely"><i class="fa fa-check"></i><b>2.2</b> Working Remotely</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#sublimetext3-set-up"><i class="fa fa-check"></i><b>2.2.1</b> SublimeText3 Set-Up</a></li>
 <li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#using-ssh-file-system"><i class="fa fa-check"></i><b>2.2.2</b> Using SSH File System</a></li>
 <li class="chapter" data-level="2.2.3" data-path="getting-started.html"><a href="getting-started.html#git-and-github-1"><i class="fa fa-check"></i><b>2.2.3</b> Git and GitHub</a></li>
@@ -161,10 +162,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="getting-started" class="section level1">
 <h1><span class="header-section-number">2</span> Getting Started</h1>
 <p>Setting up the package is mostly automated and is well documented in <a href="https://r-pkgs.org/index.html">R Packages</a> by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using <a href="https://www.rstudio.com">RStudio</a> (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.</p>
-<div id="r-package-set-up" class="section level2">
-<h2><span class="header-section-number">2.1</span> R Package Set Up</h2>
+<div id="setting-up-a-r-package" class="section level2">
+<h2><span class="header-section-number">2.1</span> Setting Up a R Package</h2>
 <p>The set up process is rather simple. If using RStudio, you can start a new R project as a package. Otherwise, the following command will get the basic framework started. There is a lot of overlap between the devtools and usethis package. I believe that RStudio is trying to fade out devtools and instead have people use the various packages that were split from it, including usethis.</p>
 <p>The advantage to using the usethis functions for seemingly simple tasks (such as making the “data-raw” directory) is that it will also add the necessary lines to “.RBuildignore,” the “DESCRIPTION,” and “NAMESPACE” if needed.</p>
+<div id="the-basics" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> The Basics</h3>
 <p>It’s easy to create the package from the R console, just replace the directory path in the following example with your desired directory. Usethis will <em>creat</em> the “ExampleAnalysisPackage” directory - do not make this directory beforehand.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&quot;/path/to/pkg/ExampleAnalysisPackage&quot;</span>)
 <span class="co">#&gt; ✔ Setting active project to &#39;p/path/to/pkg/ExampleAnalysisPackage&#39;</span>
@@ -206,8 +209,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; ✔ Creating &#39;tests/testthat/&#39;</span>
 <span class="co">#&gt; ✔ Writing &#39;tests/testthat.R&#39;</span></code></pre></div>
 <p><strong>Note:</strong> If you are working remotely (i.e.. SSHing to the computer running the code), many of the usethis functions will open the file that you just asked them to create (e.g.. open “NEWS.md” after using <code>use_news_md()</code>) in vim. To suppress this, just pass the parameter <code>open = FALSE</code>. Otherwise, it is set to <code>interactive()</code>.</p>
+</div>
 <div id="git-and-github" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Git and GitHub</h3>
+<h3><span class="header-section-number">2.1.2</span> Git and GitHub</h3>
 <p>If you are programming, you should be using git. This is especially important in the sciences because git logs can be used to resolve legal conflicts and issues of data falsification. GitHub is not essential, though I would highly recommend you use it because it makes managing files and collaboration much easier. It is also essential for taking advantage of some of the best parts of an R package such as build checks and <code>pkgdown</code> (see Extras below)</p>
 <p>To get started with git, there are <em>tons</em> of resources available, so I will not describe it here. If you are new to git and GitHub, here are a few good resources to get you started:</p>
 <ul>
@@ -228,8 +232,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; ✔ Adding files and committing</span></code></pre></div>
 </div>
 </div>
-<div id="remote" class="section level2">
-<h2><span class="header-section-number">2.2</span> Remote</h2>
+<div id="working-remotely" class="section level2">
+<h2><span class="header-section-number">2.2</span> Working Remotely</h2>
 <p>If you conduct work remotely, I’m going to assume that you have SSH set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.</p>
 <p>Though I prefer RStudio for normal package development, I spare my computer the pain of performing complex and heavy computation, opting instead to off-load it to the <a href="https://rc.hms.harvard.edu">Harvard Medical School Research Computing Cluster</a>. Therefore, I use <a href="https://www.sublimetext.com">SublimeText3</a> as by text editor and send code to the remote computing node over SSH using <a href="https://iterm2colorschemes.com">iTerm2</a> as my terminal. Finally, I use SSH File System (SSHFS) to “mount” the remote directory to my local directory.</p>
 <div id="sublimetext3-set-up" class="section level3">

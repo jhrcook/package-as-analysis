@@ -2,11 +2,13 @@
 
 Setting up the package is mostly automated and is well documented in [R Packages](https://r-pkgs.org/index.html) by Hadley Wickham. If you are running the analysis on your local machine, I would recommend using [RStudio](https://www.rstudio.com) (which you likely already do), but this is possible to do on a remote computing cluster (which is how I work). I begin by going through the steps of setting up the basic package framework, which is the same for local or remote work. Following that, there is a section for how I work remotely. This can be skipped if you only work locally or if you already have a system you enjoy (though I highly recommend the system I currently use). I finish off with a few extras that I recommend using, but are not necessary.
 
-## R Package Set Up
+## Setting Up a R Package
 
 The set up process is rather simple. If using RStudio, you can start a new R project as a package. Otherwise, the following command will get the basic framework started. There is a lot of overlap between the devtools and usethis package. I believe that RStudio is trying to fade out devtools and instead have people use the various packages that were split from it, including usethis.
 
 The advantage to using the usethis functions for seemingly simple tasks (such as making the "data-raw" directory) is that it will also add the necessary lines to ".RBuildignore," the "DESCRIPTION," and "NAMESPACE" if needed.
+
+### The Basics
 
 It's easy to create the package from the R console, just replace the directory path in the following example with your desired directory. Usethis will *creat* the "ExampleAnalysisPackage" directory - do not make this directory beforehand.
 
@@ -112,7 +114,7 @@ usethis::use_git()
 #> ✔ Adding files and committing
 ```
 
-## Remote
+## Working Remotely
 
 If you conduct work remotely, I'm going to assume that you have SSH set up and running. Otherwise, there are plenty of resources available, and you should review the material available by your system admin.
 
