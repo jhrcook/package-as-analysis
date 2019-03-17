@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>3 Workflow | Package as Analysis</title>
+  <title>4 Workflow | Package as Analysis</title>
   <meta name="description" content="This is a manual for how to conduct data science analysis using the standard R package framework.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="3 Workflow | Package as Analysis" />
+  <meta property="og:title" content="4 Workflow | Package as Analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jhrcook.github.io/package-as-analysis/" />
   <meta property="og:image" content="https://jhrcook.github.io/package-as-analysis/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jhrcook/package-as-analysis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Workflow | Package as Analysis" />
+  <meta name="twitter:title" content="4 Workflow | Package as Analysis" />
   <meta name="twitter:site" content="@JoshDoesa" />
   <meta name="twitter:description" content="This is a manual for how to conduct data science analysis using the standard R package framework." />
   <meta name="twitter:image" content="https://jhrcook.github.io/package-as-analysis/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Joshua H. Cook">
 
 
-<meta name="date" content="2019-03-12">
+<meta name="date" content="2019-03-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -126,25 +152,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3.2" data-path="framework.html"><a href="framework.html#for-data-analysis"><i class="fa fa-check"></i><b>1.3.2</b> For Data Analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
-<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#setting-up-a-r-package"><i class="fa fa-check"></i><b>2.1</b> Setting Up a R Package</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="getting-started.html"><a href="getting-started.html#the-basics"><i class="fa fa-check"></i><b>2.1.1</b> The Basics</a></li>
-<li class="chapter" data-level="2.1.2" data-path="getting-started.html"><a href="getting-started.html#git-and-github"><i class="fa fa-check"></i><b>2.1.2</b> Git and GitHub</a></li>
+<li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data Management</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-management.html"><a href="data-management.html#the-data-raw-folder"><i class="fa fa-check"></i><b>2.1</b> The “data-raw” folder</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-management.html"><a href="data-management.html#when-to-use-it"><i class="fa fa-check"></i><b>2.1.1</b> When to use it</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-management.html"><a href="data-management.html#example"><i class="fa fa-check"></i><b>2.1.2</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#working-remotely"><i class="fa fa-check"></i><b>2.2</b> Working Remotely</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#sublimetext3-set-up"><i class="fa fa-check"></i><b>2.2.1</b> SublimeText3 Set-Up</a></li>
-<li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#using-ssh-file-system"><i class="fa fa-check"></i><b>2.2.2</b> Using SSH File System</a></li>
-<li class="chapter" data-level="2.2.3" data-path="getting-started.html"><a href="getting-started.html#git-and-github-1"><i class="fa fa-check"></i><b>2.2.3</b> Git and GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#extras"><i class="fa fa-check"></i><b>2.3</b> Extras</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="getting-started.html"><a href="getting-started.html#pkgdown"><i class="fa fa-check"></i><b>2.3.1</b> pkgdown</a></li>
-<li class="chapter" data-level="2.3.2" data-path="getting-started.html"><a href="getting-started.html#travis-ci-appveyor-and-codecov"><i class="fa fa-check"></i><b>2.3.2</b> Travis-CI, Appveyor, and Codecov</a></li>
-<li class="chapter" data-level="2.3.3" data-path="getting-started.html"><a href="getting-started.html#spelling"><i class="fa fa-check"></i><b>2.3.3</b> Spelling</a></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a><ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#setting-up-a-r-package"><i class="fa fa-check"></i><b>3.1</b> Setting Up a R Package</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started.html"><a href="getting-started.html#the-basics"><i class="fa fa-check"></i><b>3.1.1</b> The Basics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started.html"><a href="getting-started.html#git-and-github"><i class="fa fa-check"></i><b>3.1.2</b> Git and GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#conclusion"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#working-remotely"><i class="fa fa-check"></i><b>3.2</b> Working Remotely</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started.html"><a href="getting-started.html#sublimetext3-set-up"><i class="fa fa-check"></i><b>3.2.1</b> SublimeText3 Set-Up</a></li>
+<li class="chapter" data-level="3.2.2" data-path="getting-started.html"><a href="getting-started.html#using-ssh-file-system"><i class="fa fa-check"></i><b>3.2.2</b> Using SSH File System</a></li>
+<li class="chapter" data-level="3.2.3" data-path="getting-started.html"><a href="getting-started.html#git-and-github-1"><i class="fa fa-check"></i><b>3.2.3</b> Git and GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>3</b> Workflow</a></li>
-<li class="chapter" data-level="4" data-path="example-allele-specific-kras-cna.html"><a href="example-allele-specific-kras-cna.html"><i class="fa fa-check"></i><b>4</b> Example: Allele-specific <em>KRAS</em> CNA</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#extras"><i class="fa fa-check"></i><b>3.3</b> Extras</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#pkgdown"><i class="fa fa-check"></i><b>3.3.1</b> pkgdown</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#travis-ci-appveyor-and-codecov"><i class="fa fa-check"></i><b>3.3.2</b> Travis-CI, Appveyor, and Codecov</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#spelling"><i class="fa fa-check"></i><b>3.3.3</b> Spelling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#conclusion"><i class="fa fa-check"></i><b>3.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>4</b> Workflow</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="workflow.html"><a href="workflow.html#document"><i class="fa fa-check"></i><b>4.0.1</b> Document</a></li>
+<li class="chapter" data-level="4.0.2" data-path="workflow.html"><a href="workflow.html#test"><i class="fa fa-check"></i><b>4.0.2</b> Test</a></li>
+<li class="chapter" data-level="4.0.3" data-path="workflow.html"><a href="workflow.html#build-and-install"><i class="fa fa-check"></i><b>4.0.3</b> Build and Install</a></li>
+<li class="chapter" data-level="4.0.4" data-path="workflow.html"><a href="workflow.html#check"><i class="fa fa-check"></i><b>4.0.4</b> Check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="example-allele-specific-kras-cna.html"><a href="example-allele-specific-kras-cna.html"><i class="fa fa-check"></i><b>5</b> Example: Allele-specific <em>KRAS</em> CNA</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 <li><a href="https://github.com/jhrcook/package-as-analysis" target="blank">Source</a><li>
@@ -167,8 +204,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="workflow" class="section level1">
-<h1><span class="header-section-number">3</span> Workflow</h1>
+<h1><span class="header-section-number">4</span> Workflow</h1>
+<div id="document" class="section level3">
+<h3><span class="header-section-number">4.0.1</span> Document</h3>
+<pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">document</span>()</code></pre>
+</div>
+<div id="test" class="section level3">
+<h3><span class="header-section-number">4.0.2</span> Test</h3>
+<pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">test</span>()</code></pre>
+</div>
+<div id="build-and-install" class="section level3">
+<h3><span class="header-section-number">4.0.3</span> Build and Install</h3>
+<p>Step one is to build and install the package. This can be done in RStuido with the hot-keys XXX. Otherwise, there is the “Build” button in the “Build” pane. If not using RStudio, then ‘devtools’ or the command line can be used. the <code>install()</code> function <em>builds</em> and <em>installs</em> the package.</p>
+<pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install</span>()</code></pre>
+<p>If (for some strange reason) only the build <em>or</em> install is desired, these two functionalities can be separated.</p>
+<pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">build</span>()
+devtools<span class="op">::</span><span class="kw">install</span>(<span class="dt">build =</span> <span class="ot">FALSE</span>)</code></pre>
+<p>At the command line.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span> CMD build ExampleAnalysisPackage
 
+
+
+<span class="ex">R</span> CMD INSTALL ExampleAnalysisPackage_0.0.0.9000.tar.gz
+
+</code></pre>
+</div>
+<div id="check" class="section level3">
+<h3><span class="header-section-number">4.0.4</span> Check</h3>
+<pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">check</span>()</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span> CMD check ExampleAnalysisPackage_0.0.0.9000.tar.gz</code></pre>
+
+</div>
 </div>
             </section>
 

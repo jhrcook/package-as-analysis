@@ -1,2 +1,61 @@
+```{r knitr_settings, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+
 # Workflow
+
+### Document
+
+```{r doc_pkg}
+devtools::document()
+```
+
+
+### Test
+
+```{r test_pkg}
+devtools::test()
+```
+
+
+### Build and Install
+
+Step one is to build and install the package. This can be done in RStuido with the hot-keys XXX. Otherwise, there is the "Build" button in the "Build" pane. If not using RStudio, then 'devtools' or the command line can be used. the `install()` function *builds* and *installs* the package.
+
+```{r install_pkg}
+devtools::install()
+```
+
+ If (for some strange reason) only the build *or* install is desired, these two functionalities can be separated.
+ 
+```{r installbld_pkg}
+devtools::build()
+devtools::install(build = FALSE)
+```
+ 
+
+At the command line.
+
+```bash
+R CMD build ExampleAnalysisPackage
+
+
+
+R CMD INSTALL ExampleAnalysisPackage_0.0.0.9000.tar.gz
+
+
+
+```
+
+
+### Check
+
+```{r check_pkg}
+devtools::check()
+```
+
+```bash
+R CMD check ExampleAnalysisPackage_0.0.0.9000.tar.gz
+```
 

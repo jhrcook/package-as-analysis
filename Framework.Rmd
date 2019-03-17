@@ -22,7 +22,7 @@ However, in a data analysis, the vignettes *are* the analysis. They are where id
 Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g. analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the usethis function, passing the name of the vignette.
 
 ```{r, eval = FALSE}
-usethis::use_vignette("0101_part1_firstvignette")
+usethis::use_vignette("A01_part1_firstvignette")
 #> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'
 #> ✔ Adding 'knitr' to Suggests field in DESCRIPTION
 #> ✔ Setting VignetteBuilder field in DESCRIPTION to 'knitr'
@@ -30,16 +30,17 @@ usethis::use_vignette("0101_part1_firstvignette")
 #> ✔ Creating 'vignettes/'
 #> ✔ Adding '*.html', '*.R' to 'vignettes/.gitignore'
 #> ✔ Adding 'inst/doc' to '.gitignore'
-#> ✔ Creating 'vignettes/0101_part1_firstvignette.Rmd'
-#> ● Modify 'vignettes/0101_part1_firstvignette.Rmd'
+#> ✔ Creating 'vignettes/A01_part1_firstvignette.Rmd'
+#> ● Modify 'vignettes/A01_part1_firstvignette.Rmd'
 ```
 
 Notice that the ".Rmd" extension is ommited in the above function - usethis adds the appropriate extensions in most cases. 
 
-It is important to deliberately decide on a naming scheme. I have opted for "(##)(##)_part_subpart" where the leading number is made of two levels followed by the names of the two levels. For the leading number, the first two digits are the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name ("part") is the name referring to the layer of organization dictated by the first two digits of the leading number. The second name ("subpart") is referring to the layer of organization dictated by the second two digits of the leading number.
+It is important to deliberately decide on a naming scheme. I have opted for "(A-Z)(##)_part_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name ("part") is the name referring to the layer of organization dictated by the first letter of the leading alphanumeric index. The second name ("subpart") is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
 
-Therefore, the follow-up analysis that follows "0101_part1_firstvignette" could be "0102_part1_secondvignette". A vignette for another part of the project would alternatively be called "0201_part2_firstvignette". I now have a two branches of analysis in my project, the first with two pages of analysis and the second with only one.
+Therefore, the follow-up analysis that follows "A01_part1_firstvignette" could be "A02_part1_secondvignette". A vignette for another part of the project would alternatively be called "B01_part2_firstvignette". I now have two branches of analysis in my project, the first with two pages of analysis and the second with only one.
 
+Of course, you should customize the naming scheme if this does not work for you, but it is ddefinitely important to have one and to keep it ordered. The only limit is that the vignette name cannot start with a number.
 
 ### Formatting a Vignette
 

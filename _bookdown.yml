@@ -9,6 +9,8 @@ rmd_files:
         
         "Framework.Rmd",
         
+        "Data-Management.Rmd",
+        
         "Getting-Started.Rmd",
         
         "Workflow.Rmd",
