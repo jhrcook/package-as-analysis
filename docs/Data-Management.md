@@ -1,0 +1,43 @@
+# Data Management
+
+This is the most annoying part of a large data analysis project. Usually, the goal is to stike a balance between complexity and ease-of-use. The R package framework does most of the work, but there are a few finicky details.
+
+The data structure is divided between 3 directories at the project root:
+
+1. **data-raw** - messey and raw data that needs a bit of work to be ready for use in the vignettes
+2. **inst/extdata** - data that is analyzed in the vignettes; is usually not tidy but not too messy either
+3. **data** - *tidy* data that is meant to be reusable and is important to the project
+
+
+The order listed above is from least to most prepared. Each has a role and purpose for existing.
+
+## The "data-raw" folder
+
+### When to use it
+
+The "data-raw" directory is meant to hold the messy and unorganized data that needs a bit of help to get to a usable state. Therefore, the data stored there should be accompanied by a R script that puts them into the simplest usable state. I think it is best practice to have an individual script for each data type because it is meant to be simple and easy to understand. The main idea is to do the fewest steps possible to get the data into a slightly more useful state and stored in "inst/extdata".
+
+Most data can likely skip "data-raw" and go directly into "inst/extdata". As you can tell from the previous paragraph, the decision between putting data into "data-raw" and "inst/extdata" comes down to one's definitions of "messy" and "usable". However, there is one case (at least that I have come across) where using data-raw is required (i.e. `R CMD check` throws an error is you do not).
+
+The one case where the data must be stored in "data-raw" and then preprocessed to "inst/extdata" is if it is a lot of small data files that will be joined together. If the package is built (using `devtools::build()`), a warning for each file (which can potentially be a lot of files!) will be thrown saying it is bad to compress all of these small files.
+
+
+```r
+devtools::install()
+#> ...
+#> Warning in utils::tar(filepath, pkgname, compression = "gzip", compression_level = 9L,  :
+#>      storing paths of more than 100 bytes is not portable:
+#>      "ExampleAnalysisPackage/path/to/offending/file.txt"
+#> ...
+```
+
+
+To avoid this, I read all of the data into a single object (usually a list) and then save that to "inst/extdata".
+
+
+
+### Example
+
+Since the R script is in "data-raw", it will not be built with the rest of the package. Therefore, it is important to clearly state the intedned working durectory. To stay consistent, I recommend staying in the package's root directory.
+
+However, the common case where I will use "data-raw" is if I have a folder with a lot of small data files that will be joined together. 
