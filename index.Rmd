@@ -44,18 +44,19 @@ There are many advantages to using this framework. Here are just a few, though I
 
 ### Examples {-}
 
+[ExampleAnalysisPackage](https://github.com/jhrcook/ExampleAnalysisPackage) - This package was built alongside the writing of this book. It does not conduct an analysis, though may serve as a useful reference for the bare-bones framework.
+
 [coming soon] Allele-specific *KRAS* copy number alteration
 
 ## About {-}
 
 ### About this Book {-}
 
-[TODO]
+[TODO] Do at end
 
 ### About the Author {-}
 
 I am a classically-trained biologist-turned computational biologist. I graduated with degrees in Molecular Biology and Biochemistry, and Chemistry from the University of California, Irvine in 2017. My research focused on investigating the patterns and mechanisms of dissemination by which *Toxoplasma gondii*, an obligate, intracellular parasite, infects a human host [Cook *et al.*, 2018](https://www.ncbi.nlm.nih.gov/pubmed/29295815). I started my graduate studies at Harvard Medical School in 2018, and after rotating in a chemical biology lab and a *Vibrio cholerae* lab, I finally decided to study cancer using computational biology. Since then, and continuing still today, I have been learning computer programming and statistics, trying to catch up to my peers. Consequently, I have fallen in love with R, especially because of the [Tyidyverse](https://www.tidyverse.org) and tidy data.
-
 
 
 ## Resources {-}
@@ -64,16 +65,18 @@ The best resource for making R packages is [R Packages](https://r-pkgs.org/index
 
 There are some useful R packages you will want to have installed:
 
-* `devtools` - will do most of the development building and checking
-* `roxygen2` - makes all of the documentation
-* `usethis` - for preparing all of the pieces and tools you want to include
-* `testthat` - for running tests
-* `kintr` - for compiling all of the Rmarkdown files
+* 'devtools' - will do most of the development building and checking
+* 'roxygen2' - makes all of the documentation
+* 'usethis' - preparing all of the pieces and tools you want to include
+* 'testthat' - running tests
+* 'kintr' - building all of the R markdown files
+* 'rmarkdown' - integrate R code into markdown
 
 These can be installed using the following code.
 
 ```{r install_packages, eval = FALSE}
-install.packages(c("devtools", "roxygen2", "usethis", "testthat", "knitr"))
+install.packages(c("devtools", "roxygen2", "usethis", "testthat",
+                   "knitr", "rmarkdown"))
 ```
 
 
