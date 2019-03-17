@@ -178,6 +178,8 @@ There are many advantages to using this framework. Here are just a few, though I
 \subsection*{Examples}\label{examples}}
 \addcontentsline{toc}{subsection}{Examples}
 
+\href{https://github.com/jhrcook/ExampleAnalysisPackage}{ExampleAnalysisPackage} - This package was built alongside the writing of this book. It does not conduct an analysis, though may serve as a useful reference for the bare-bones framework.
+
 {[}coming soon{]} Allele-specific \emph{KRAS} copy number alteration
 
 \hypertarget{about}{%
@@ -188,7 +190,7 @@ There are many advantages to using this framework. Here are just a few, though I
 \subsection*{About this Book}\label{about-this-book}}
 \addcontentsline{toc}{subsection}{About this Book}
 
-{[}TODO{]}
+{[}TODO{]} Do at end
 
 \hypertarget{about-the-author}{%
 \subsection*{About the Author}\label{about-the-author}}
@@ -207,22 +209,25 @@ There are some useful R packages you will want to have installed:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{devtools} - will do most of the development building and checking
+  `devtools' - will do most of the development building and checking
 \item
-  \texttt{roxygen2} - makes all of the documentation
+  `roxygen2' - makes all of the documentation
 \item
-  \texttt{usethis} - for preparing all of the pieces and tools you want to include
+  `usethis' - preparing all of the pieces and tools you want to include
 \item
-  \texttt{testthat} - for running tests
+  `testthat' - running tests
 \item
-  \texttt{kintr} - for compiling all of the Rmarkdown files
+  `kintr' - building all of the R markdown files
+\item
+  `rmarkdown' - integrate R code into markdown
 \end{itemize}
 
 These can be installed using the following code.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\StringTok{"roxygen2"}\NormalTok{, }\StringTok{"usethis"}\NormalTok{, }\StringTok{"testthat"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{))}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\StringTok{"roxygen2"}\NormalTok{, }\StringTok{"usethis"}\NormalTok{, }\StringTok{"testthat"}\NormalTok{,}
+                   \StringTok{"knitr"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -240,7 +245,7 @@ This work is under a \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{At
 
 I have decided to introduce the R packagge framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader's focus, here.
 
-I try to adhere to the following process for each peace of the framework:
+I try to address the following points for each peace of the framework:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -256,18 +261,18 @@ I try to adhere to the following process for each peace of the framework:
 \hypertarget{vignettes}{%
 \section{Vignettes}\label{vignettes}}
 
-I am starting with vignettes because they are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show the functionality of the package. They are usually user guides or are attempts to inspire potential users.
+Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific the functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.
 
 However, in a data analysis, the vignettes \emph{are} the analysis. They are where ideas are formed, discussed, tested, and validated. Everything is centered around a vignette. If you already use R markdown for data analysis, then this should be of little perturbance to your standard operating procedure. If you do not, though, this should be a welcomed change.
 
 \hypertarget{starting-a-vignette}{%
 \subsection{Starting a Vignette}\label{starting-a-vignette}}
 
-Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g.~analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the usethis function, passing the name of the vignette.
+Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g.~analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the `usethis' function, passing the name of the vignette.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_vignette}\NormalTok{(}\StringTok{"A01_part1_firstvignette"}\NormalTok{)}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_vignette}\NormalTok{(}\StringTok{"a01_part1_firstvignette"}\NormalTok{)}
 \CommentTok{#> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'}
 \CommentTok{#> ✔ Adding 'knitr' to Suggests field in DESCRIPTION}
 \CommentTok{#> ✔ Setting VignetteBuilder field in DESCRIPTION to 'knitr'}
@@ -280,31 +285,64 @@ Ideally, each vignette will be a different step in the analysis. Alternatively, 
 \end{Highlighting}
 \end{Shaded}
 
-Notice that the ``.Rmd'' extension is ommited in the above function - usethis adds the appropriate extensions in most cases.
+Notice that the ``.Rmd'' extension is ommited in the above function - `usethis' adds the appropriate extensions in most cases.
 
-It is important to deliberately decide on a naming scheme. I have opted for "(A-Z)(\#\#)\_part\_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (``part'') is the name referring to the layer of organization dictated by the first letter of the leading alphanumeric index. The second name (``subpart'') is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
+\hypertarget{naming-system}{%
+\subsection{Naming system}\label{naming-system}}
+
+It is important to deliberately decide on a naming scheme. I have opted for "(a-z)(\#\#)\_part\_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (``part'') is the name referring to the layer of organization dictated by the letter of the leading alphanumeric index. The second name (``subpart'') is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
 
 Therefore, the follow-up analysis that follows ``A01\_part1\_firstvignette'' could be ``A02\_part1\_secondvignette''. A vignette for another part of the project would alternatively be called ``B01\_part2\_firstvignette''. I now have two branches of analysis in my project, the first with two pages of analysis and the second with only one.
 
-Of course, you should customize the naming scheme if this does not work for you, but it is ddefinitely important to have one and to keep it ordered. The only limit is that the vignette name cannot start with a number.
+Of course, you should customize the naming scheme if this does not work for you, but it is definitely important to have one and to keep it ordered.
+
+The only limit on the namining of a vignette is that it cannot start with a number.
 
 \hypertarget{formatting-a-vignette}{%
-\subsection{Formatting a Vignette}\label{formatting-a-vignette}}
+\subsection{Formatting a vignette}\label{formatting-a-vignette}}
 
 {[}TODO{]}
+
+\hypertarget{data-management-data-data-raw-and-instextdata}{%
+\section{Data management: ``data'', ``data-raw'', and ``inst/extdata''}\label{data-management-data-data-raw-and-instextdata}}
+
+This topic is fully covered in \protect\hyperlink{data-management}{Chapter 2. Data Management}, though I breifly introduce the system here.
 
 \hypertarget{the-r-directory}{%
 \section{The R/ Directory}\label{the-r-directory}}
 
-\hypertarget{normal-use}{%
-\subsection{Normal Use}\label{normal-use}}
-
 The R directory will hold all R scripts (usually files ending with the ``.R'' extension). For a normal package, this is all of the source code that builds the package.
 
-\hypertarget{for-data-analysis}{%
-\subsection{For Data Analysis}\label{for-data-analysis}}
-
 For the purpose of a data analysis project, this will still hold R scripts (with the ``.R'' extension), but the organization of scripts is different.
+
+\hypertarget{other-languages}{%
+\section{Other Languages}\label{other-languages}}
+
+read \href{https://r-pkgs.org/inst.html\#inst-other-langs}{``Other languages''} section of Hadley's R Packages
+
+\hypertarget{metadata}{%
+\section{Metadata}\label{metadata}}
+
+\hypertarget{description}{%
+\subsection{DESCRIPTION}\label{description}}
+
+\hypertarget{namespace}{%
+\subsection{NAMESPACE}\label{namespace}}
+
+\hypertarget{news.md}{%
+\subsection{NEWS.md}\label{news.md}}
+
+\hypertarget{license-1}{%
+\subsection{LICENSE}\label{license-1}}
+
+\hypertarget{readme}{%
+\subsection{README}\label{readme}}
+
+\hypertarget{rbuildignore}{%
+\subsection{.Rbuildignore}\label{rbuildignore}}
+
+\hypertarget{testing-in-tests}{%
+\section{Testing in ``tests''}\label{testing-in-tests}}
 
 \hypertarget{data-management}{%
 \chapter{Data Management}\label{data-management}}
@@ -724,8 +762,18 @@ Setting up a R package is actually pretty easy, flexible, and customizable. It i
 \hypertarget{workflow}{%
 \chapter{Workflow}\label{workflow}}
 
+\hypertarget{analysis}{%
+\section{Analysis}\label{analysis}}
+
+\hypertarget{build-and-check}{%
+\section{Build and Check}\label{build-and-check}}
+
+Below is the workflow to use to build and check the package. The frequency of going thorugh this process needs to be calibrated such that it is done often enough to catch errors early on, but not too often to be disruptive to the analysis. I generally go through the process after each major chunk of work - such as a completing vignette - or at the end of the day (if I think it should build).
+
 \hypertarget{document}{%
 \subsection{Document}\label{document}}
+
+The first step is to uild the documentation using `roxygen2'. In RStudio, the keyboard shortcut is cmd+shift+D. Otherwise, a `devtools' function can be used from the console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -736,6 +784,8 @@ Setting up a R package is actually pretty easy, flexible, and customizable. It i
 \hypertarget{test}{%
 \subsection{Test}\label{test}}
 
+Then run the tests to make sure everything still works. Since the tests are written to check that the functions work as expected and not the test the efficiency of the functions, these should be quick tasks, and thus easy to perform often. In RStudio, the keyboard shortcut is cmd+shift+T. Otherwise, a `devtools' function can be used from the console.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{test}\NormalTok{()}
@@ -745,7 +795,7 @@ Setting up a R package is actually pretty easy, flexible, and customizable. It i
 \hypertarget{build-and-install}{%
 \subsection{Build and Install}\label{build-and-install}}
 
-Step one is to build and install the package. This can be done in RStuido with the hot-keys XXX. Otherwise, there is the ``Build'' button in the ``Build'' pane. If not using RStudio, then `devtools' or the command line can be used. the \texttt{install()} function \emph{builds} and \emph{installs} the package.
+The package must be built and installed (in the actual R library). This can be done in RStuido with the hot-keys XXX. Otherwise, there is the ``Build'' button in the ``Build'' pane. If not using RStudio, then `devtools' or the command line can be used. the \texttt{install()} function \emph{builds} and \emph{installs} the package. In RStudio, the keyboard shortcut is cmd+shift+B. Otherwise, a `devtools' function can be used from the console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -762,22 +812,10 @@ If (for some strange reason) only the build \emph{or} install is desired, these 
 \end{Highlighting}
 \end{Shaded}
 
-At the command line.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{R}\NormalTok{ CMD build ExampleAnalysisPackage}
-
-
-
-\ExtensionTok{R}\NormalTok{ CMD INSTALL ExampleAnalysisPackage_0.0.0.9000.tar.gz}
-
-
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{check}{%
 \subsection{Check}\label{check}}
+
+The final step is the check the package. In RStudio, the keyboard shortcut is cmd+shift+E. Otherwise, a `devtools' function can be used from the console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -785,11 +823,7 @@ At the command line.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{R}\NormalTok{ CMD check ExampleAnalysisPackage_0.0.0.9000.tar.gz}
-\end{Highlighting}
-\end{Shaded}
+\textbf{Note:} I check the package after building and installing, though Wickham describes that the checking process should be first and only build and install the package after the check is successful. The difference arises because of the use of vignettes. In the vignettes, the package being developed is loaded from the library with \texttt{library(ExampleAnalysisPackage)}. Therefore, the version in the library needs to be updated every time. This is a bit annoying, but the build and installation really do not take very long (especially compared to the check) and catch the big errors, anyways.
 
 \hypertarget{example-allele-specific-kras-cna}{%
 \chapter{\texorpdfstring{Example: Allele-specific \emph{KRAS} CNA}{Example: Allele-specific KRAS CNA}}\label{example-allele-specific-kras-cna}}

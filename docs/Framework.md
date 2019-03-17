@@ -4,7 +4,7 @@
 
 I have decided to introduce the R packagge framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader's focus, here.
 
-I try to adhere to the following process for each peace of the framework:
+I try to address the following points for each peace of the framework:
 
 1. what is it and what is its main role?
 2. when does it need to be used or adjusted?
@@ -13,17 +13,17 @@ I try to adhere to the following process for each peace of the framework:
 
 ## Vignettes
 
-I am starting with vignettes because they are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show the functionality of the package. They are usually user guides or are attempts to inspire potential users.
+Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific the functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.
 
 However, in a data analysis, the vignettes *are* the analysis. They are where ideas are formed, discussed, tested, and validated. Everything is centered around a vignette. If you already use R markdown for data analysis, then this should be of little perturbance to your standard operating procedure. If you do not, though, this should be a welcomed change.
 
 ### Starting a Vignette
 
-Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g. analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the usethis function, passing the name of the vignette.
+Ideally, each vignette will be a different step in the analysis. Alternatively, each vignette could be a different part of the project (e.g. analyzing the results of a screen in one vignette and analyzing the results of validation experiments in another). However you choose to divide up the analysis is your choice (though I have found R markdown files to slow down RStudio if they get too long or image intensive). To begin a vignette, use the 'usethis' function, passing the name of the vignette.
 
 
 ```r
-usethis::use_vignette("A01_part1_firstvignette")
+usethis::use_vignette("a01_part1_firstvignette")
 #> ✔ Setting active project to '/path/to/pkg/ExampleAnalysisPackage'
 #> ✔ Adding 'knitr' to Suggests field in DESCRIPTION
 #> ✔ Setting VignetteBuilder field in DESCRIPTION to 'knitr'
@@ -35,25 +35,62 @@ usethis::use_vignette("A01_part1_firstvignette")
 #> ● Modify 'vignettes/A01_part1_firstvignette.Rmd'
 ```
 
-Notice that the ".Rmd" extension is ommited in the above function - usethis adds the appropriate extensions in most cases. 
+Notice that the ".Rmd" extension is ommited in the above function - 'usethis' adds the appropriate extensions in most cases. 
 
-It is important to deliberately decide on a naming scheme. I have opted for "(A-Z)(##)_part_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name ("part") is the name referring to the layer of organization dictated by the first letter of the leading alphanumeric index. The second name ("subpart") is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
+### Naming system
+
+It is important to deliberately decide on a naming scheme. I have opted for "(a-z)(##)_part_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name ("part") is the name referring to the layer of organization dictated by the letter of the leading alphanumeric index. The second name ("subpart") is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
 
 Therefore, the follow-up analysis that follows "A01_part1_firstvignette" could be "A02_part1_secondvignette". A vignette for another part of the project would alternatively be called "B01_part2_firstvignette". I now have two branches of analysis in my project, the first with two pages of analysis and the second with only one.
 
-Of course, you should customize the naming scheme if this does not work for you, but it is ddefinitely important to have one and to keep it ordered. The only limit is that the vignette name cannot start with a number.
+Of course, you should customize the naming scheme if this does not work for you, but it is definitely important to have one and to keep it ordered.
 
-### Formatting a Vignette
+The only limit on the namining of a vignette is that it cannot start with a number.
+
+### Formatting a vignette
 
 [TODO]
 
 
-## The R/ Directory
 
-### Normal Use
+## Data management: "data", "data-raw", and "inst/extdata"
+
+This topic is fully covered in [Chapter 2. Data Management][Data Management], though I breifly introduce the system here.
+
+
+
+
+
+## The R/ Directory
 
 The R directory will hold all R scripts (usually files ending with the ".R" extension). For a normal package, this is all of  the source code that builds the package.
 
-### For Data Analysis
-
 For the purpose of a data analysis project, this will still hold R scripts (with the ".R" extension), but the organization of scripts is different.
+
+
+
+## Other Languages
+
+read ["Other languages"](https://r-pkgs.org/inst.html#inst-other-langs) section of Hadley's R Packages
+
+
+## Metadata
+
+### DESCRIPTION
+
+### NAMESPACE
+
+### NEWS.md
+
+### LICENSE
+
+### README
+
+### .Rbuildignore
+
+
+
+## Testing in "tests"
+
+
+
