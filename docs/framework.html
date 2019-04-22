@@ -25,7 +25,7 @@
 <meta name="author" content="Joshua H. Cook">
 
 
-<meta name="date" content="2019-03-17">
+<meta name="date" content="2019-04-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.5" data-path="framework.html"><a href="framework.html#readme"><i class="fa fa-check"></i><b>1.6.5</b> README</a></li>
 <li class="chapter" data-level="1.6.6" data-path="framework.html"><a href="framework.html#rbuildignore"><i class="fa fa-check"></i><b>1.6.6</b> .Rbuildignore</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="framework.html"><a href="framework.html#testing-in-tests"><i class="fa fa-check"></i><b>1.7</b> Testing in “tests”</a></li>
+<li class="chapter" data-level="1.7" data-path="framework.html"><a href="framework.html#testing"><i class="fa fa-check"></i><b>1.7</b> Testing</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data Management</a><ul>
 <li class="chapter" data-level="2.1" data-path="data-management.html"><a href="data-management.html#the-data-raw-folder"><i class="fa fa-check"></i><b>2.1</b> The “data-raw” folder</a><ul>
@@ -219,17 +219,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">1</span> Framework</h1>
 <div id="introduction" class="section level2">
 <h2><span class="header-section-number">1.1</span> Introduction</h2>
-<p>I have decided to introduce the R packagge framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader’s focus, here.</p>
+<p>I have decided to introduce the R package framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader’s focus, here.</p>
 <p>I try to address the following points for each peace of the framework:</p>
 <ol style="list-style-type: decimal">
-<li>what is it and what is its main role?</li>
-<li>when does it need to be used or adjusted?</li>
-<li>what is unique about its use for a data analysis project?</li>
+<li>What is it and what is its main role?</li>
+<li>When does it need to be used or adjusted?</li>
+<li>What is unique about its use for a data analysis project?</li>
 </ol>
 </div>
 <div id="vignettes" class="section level2">
 <h2><span class="header-section-number">1.2</span> Vignettes</h2>
-<p>Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific the functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.</p>
+<p>Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.</p>
 <p>However, in a data analysis, the vignettes <em>are</em> the analysis. They are where ideas are formed, discussed, tested, and validated. Everything is centered around a vignette. If you already use R markdown for data analysis, then this should be of little perturbance to your standard operating procedure. If you do not, though, this should be a welcomed change.</p>
 <div id="starting-a-vignette" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Starting a Vignette</h3>
@@ -244,23 +244,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="co">#&gt; ✔ Adding &#39;inst/doc&#39; to &#39;.gitignore&#39;</span>
 <span class="co">#&gt; ✔ Creating &#39;vignettes/A01_part1_firstvignette.Rmd&#39;</span>
 <span class="co">#&gt; ● Modify &#39;vignettes/A01_part1_firstvignette.Rmd&#39;</span></code></pre>
-<p>Notice that the “.Rmd” extension is ommited in the above function - ‘usethis’ adds the appropriate extensions in most cases.</p>
+<p>Notice that the “.Rmd” extension is ommited in the above function - ‘usethis’ adds the appropriate extension in many cases.</p>
 </div>
 <div id="naming-system" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Naming system</h3>
-<p>It is important to deliberately decide on a naming scheme. I have opted for &quot;(a-z)(##)_part_subpart&quot; where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (“part”) is the name referring to the layer of organization dictated by the letter of the leading alphanumeric index. The second name (“subpart”) is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index</p>
+<p>It is important to deliberately decide on a naming scheme. I have opted for &quot;(a-z)(##)_part_subpart&quot; where the leading alpha-numeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (“part”) is the name referring to the layer of organization dictated by the letter of the leading alpha-numeric index. The second name (“subpart”) is referring to the layer of organization dictated by the second two digits of the leading alpha-numeric index</p>
 <p>Therefore, the follow-up analysis that follows “A01_part1_firstvignette” could be “A02_part1_secondvignette”. A vignette for another part of the project would alternatively be called “B01_part2_firstvignette”. I now have two branches of analysis in my project, the first with two pages of analysis and the second with only one.</p>
 <p>Of course, you should customize the naming scheme if this does not work for you, but it is definitely important to have one and to keep it ordered.</p>
 <p>The only limit on the namining of a vignette is that it cannot start with a number.</p>
 </div>
 <div id="formatting-a-vignette" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Formatting a vignette</h3>
-<p>[TODO]</p>
+<p>I begin by loading the libraries in a single chunk <em>and leaving it visible</em> (i.e. <code>echo = TRUE</code> in the chunk’s header). While it is tempting to hide this information to reduce clutter, this is obviously relevent information for anyone trying to replicate or adapt your analysis.</p>
+<p>Next, I declare the data directories in their own R chunk if I will be using them in the vignette. See below for more information on these. Again, leave them visible so others can track your work.</p>
+<p>Finally, I begin writing the analysis with a section defining the purpose of the analysis to follow. Usually this section will be call <strong>Purpose</strong>, <strong>Goal</strong>, <strong>Introduction</strong>, etc. Whatever you choose, just make sure to clearly state the why the analysis is being done - focus on the “why”, not the “how”.</p>
+<p>After this, it is up to you. The format of the analysis will obviously depend on the details of the work being done, but make sure to keep a logical flow and describe the purpose of each step. Also, it is helpful to include information on what is happening within the code. This will help both the reader and future you know what is being done in each chunk of code.</p>
 </div>
 </div>
 <div id="data-management-data-data-raw-and-instextdata" class="section level2">
 <h2><span class="header-section-number">1.3</span> Data management: “data”, “data-raw”, and “inst/extdata”</h2>
 <p>This topic is fully covered in <a href="data-management.html#data-management">Chapter 2. Data Management</a>, though I breifly introduce the system here.</p>
+<p><strong>#&gt; TODO</strong>: write the full chapter on data first before writing this subset of its information.</p>
 </div>
 <div id="the-r-directory" class="section level2">
 <h2><span class="header-section-number">1.4</span> The R/ Directory</h2>
@@ -278,6 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="namespace" class="section level3">
 <h3><span class="header-section-number">1.6.2</span> NAMESPACE</h3>
+<p>It is unlikely you will need to touch this file yourself. It is created by <code>usethis::create_package()</code> and updated by the functions used for documention and building the package. Briefly, the <code>NAMESPACE</code> file tells R what is being brought in by this package. If you really want to dive into the details, Wickham covers it is thoroughly in <a href="https://r-pkgs.org/namespace.html"><em>Advanced R: Chapter 9 Namespace</em></a>.</p>
 </div>
 <div id="news.md" class="section level3">
 <h3><span class="header-section-number">1.6.3</span> NEWS.md</h3>
@@ -292,8 +297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.6.6</span> .Rbuildignore</h3>
 </div>
 </div>
-<div id="testing-in-tests" class="section level2">
-<h2><span class="header-section-number">1.7</span> Testing in “tests”</h2>
+<div id="testing" class="section level2">
+<h2><span class="header-section-number">1.7</span> Testing</h2>
 
 </div>
 </div>

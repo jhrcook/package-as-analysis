@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-03-17}
+    \date{2019-04-21}
 
 \usepackage{booktabs}
 
@@ -180,7 +180,7 @@ There are many advantages to using this framework. Here are just a few, though I
 
 \href{https://github.com/jhrcook/ExampleAnalysisPackage}{ExampleAnalysisPackage} - This package was built alongside the writing of this book. It does not conduct an analysis, though may serve as a useful reference for the bare-bones framework.
 
-{[}coming soon{]} Allele-specific \emph{KRAS} copy number alteration
+\href{https://github.com/jhrcook/KrasAlleleCna}{\emph{KRAS} allele-specific copy number alteration} - I replicated an analysis I did for a paper (\href{http://cancerdiscovery.aacrjournals.org/content/early/2019/04/05/2159-8290.CD-18-1220}{Poulin \emph{et al.}, 2019}) in the R package framework. This was where I really tested the idealoogy proposed in this book. It's not perfect, but came out quite well.
 
 \hypertarget{about}{%
 \section*{About}\label{about}}
@@ -243,7 +243,7 @@ This work is under a \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{At
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-I have decided to introduce the R packagge framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader's focus, here.
+I have decided to introduce the R package framework before going through the set-up process because, quite frankly, I think this is more important. There are many sites that outline the steps of creating an R package (they likely do it better than I will next chapter), but the main point of this book is how to make the R package into a data analysis project. Therfore, understanding the use of the framework should be the reader's focus, here.
 
 I try to address the following points for each peace of the framework:
 
@@ -251,17 +251,17 @@ I try to address the following points for each peace of the framework:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  what is it and what is its main role?
+  What is it and what is its main role?
 \item
-  when does it need to be used or adjusted?
+  When does it need to be used or adjusted?
 \item
-  what is unique about its use for a data analysis project?
+  What is unique about its use for a data analysis project?
 \end{enumerate}
 
 \hypertarget{vignettes}{%
 \section{Vignettes}\label{vignettes}}
 
-Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific the functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.
+Vignettes are the heart of the data analysis. Ironically, they are often covered last in tutorials on creating R packages, and rightly so! For an R package, the vignettes merely show a specific functionality or extension of the package. They are usually user guides or are attempts to inspire potential users.
 
 However, in a data analysis, the vignettes \emph{are} the analysis. They are where ideas are formed, discussed, tested, and validated. Everything is centered around a vignette. If you already use R markdown for data analysis, then this should be of little perturbance to your standard operating procedure. If you do not, though, this should be a welcomed change.
 
@@ -285,12 +285,12 @@ Ideally, each vignette will be a different step in the analysis. Alternatively, 
 \end{Highlighting}
 \end{Shaded}
 
-Notice that the ``.Rmd'' extension is ommited in the above function - `usethis' adds the appropriate extensions in most cases.
+Notice that the ``.Rmd'' extension is ommited in the above function - `usethis' adds the appropriate extension in many cases.
 
 \hypertarget{naming-system}{%
 \subsection{Naming system}\label{naming-system}}
 
-It is important to deliberately decide on a naming scheme. I have opted for "(a-z)(\#\#)\_part\_subpart" where the leading alphanumeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (``part'') is the name referring to the layer of organization dictated by the letter of the leading alphanumeric index. The second name (``subpart'') is referring to the layer of organization dictated by the second two digits of the leading alphanumeric index
+It is important to deliberately decide on a naming scheme. I have opted for "(a-z)(\#\#)\_part\_subpart" where the leading alpha-numeric index is made of two levels followed by the names of the two levels. The first letter is the highest level of orgnization and the second two digits are for the sublevel. For the naming, the first name (``part'') is the name referring to the layer of organization dictated by the letter of the leading alpha-numeric index. The second name (``subpart'') is referring to the layer of organization dictated by the second two digits of the leading alpha-numeric index
 
 Therefore, the follow-up analysis that follows ``A01\_part1\_firstvignette'' could be ``A02\_part1\_secondvignette''. A vignette for another part of the project would alternatively be called ``B01\_part2\_firstvignette''. I now have two branches of analysis in my project, the first with two pages of analysis and the second with only one.
 
@@ -301,12 +301,20 @@ The only limit on the namining of a vignette is that it cannot start with a numb
 \hypertarget{formatting-a-vignette}{%
 \subsection{Formatting a vignette}\label{formatting-a-vignette}}
 
-{[}TODO{]}
+I begin by loading the libraries in a single chunk \emph{and leaving it visible} (i.e. \texttt{echo\ =\ TRUE} in the chunk's header). While it is tempting to hide this information to reduce clutter, this is obviously relevent information for anyone trying to replicate or adapt your analysis.
+
+Next, I declare the data directories in their own R chunk if I will be using them in the vignette. See below for more information on these. Again, leave them visible so others can track your work.
+
+Finally, I begin writing the analysis with a section defining the purpose of the analysis to follow. Usually this section will be call \textbf{Purpose}, \textbf{Goal}, \textbf{Introduction}, etc. Whatever you choose, just make sure to clearly state the why the analysis is being done - focus on the ``why'', not the ``how''.
+
+After this, it is up to you. The format of the analysis will obviously depend on the details of the work being done, but make sure to keep a logical flow and describe the purpose of each step. Also, it is helpful to include information on what is happening within the code. This will help both the reader and future you know what is being done in each chunk of code.
 
 \hypertarget{data-management-data-data-raw-and-instextdata}{%
 \section{Data management: ``data'', ``data-raw'', and ``inst/extdata''}\label{data-management-data-data-raw-and-instextdata}}
 
 This topic is fully covered in \protect\hyperlink{data-management}{Chapter 2. Data Management}, though I breifly introduce the system here.
+
+\textbf{\#\textgreater{} TODO}: write the full chapter on data first before writing this subset of its information.
 
 \hypertarget{the-r-directory}{%
 \section{The R/ Directory}\label{the-r-directory}}
@@ -329,6 +337,8 @@ read \href{https://r-pkgs.org/inst.html\#inst-other-langs}{``Other languages''} 
 \hypertarget{namespace}{%
 \subsection{NAMESPACE}\label{namespace}}
 
+It is unlikely you will need to touch this file yourself. It is created by \texttt{usethis::create\_package()} and updated by the functions used for documention and building the package. Briefly, the \texttt{NAMESPACE} file tells R what is being brought in by this package. If you really want to dive into the details, Wickham covers it is thoroughly in \href{https://r-pkgs.org/namespace.html}{\emph{Advanced R: Chapter 9 Namespace}}.
+
 \hypertarget{news.md}{%
 \subsection{NEWS.md}\label{news.md}}
 
@@ -341,8 +351,8 @@ read \href{https://r-pkgs.org/inst.html\#inst-other-langs}{``Other languages''} 
 \hypertarget{rbuildignore}{%
 \subsection{.Rbuildignore}\label{rbuildignore}}
 
-\hypertarget{testing-in-tests}{%
-\section{Testing in ``tests''}\label{testing-in-tests}}
+\hypertarget{testing}{%
+\section{Testing}\label{testing}}
 
 \hypertarget{data-management}{%
 \chapter{Data Management}\label{data-management}}

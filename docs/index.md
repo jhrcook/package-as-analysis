@@ -5,7 +5,7 @@ url: 'https\://jhrcook.github.io/package-as-analysis/'
 github-repo: jhrcook/package-as-analysis
 twitter-handle: JoshDoesa
 cover-image: cover.png
-date: "2019-03-17"
+date: "2019-04-21"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
@@ -46,7 +46,8 @@ There are many advantages to using this framework. Here are just a few, though I
 
 [ExampleAnalysisPackage](https://github.com/jhrcook/ExampleAnalysisPackage) - This package was built alongside the writing of this book. It does not conduct an analysis, though may serve as a useful reference for the bare-bones framework.
 
-[coming soon] Allele-specific *KRAS* copy number alteration
+[*KRAS* allele-specific copy number alteration](https://github.com/jhrcook/KrasAlleleCna) - I replicated an analysis I did for a paper ([Poulin *et al.*, 2019](http://cancerdiscovery.aacrjournals.org/content/early/2019/04/05/2159-8290.CD-18-1220)) in the R package framework. This was where I really tested the idealoogy proposed in this book. It's not perfect, but came out quite well.
+
 
 ## About {-}
 
