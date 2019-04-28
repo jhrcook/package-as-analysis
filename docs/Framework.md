@@ -73,10 +73,25 @@ This topic is fully covered in [Chapter 2. Data Management][Data Management], th
 
 ## The R/ Directory
 
-The R directory will hold all R scripts (usually files ending with the ".R" extension). For a normal package, this is all of  the source code that builds the package.
+The "R/" directory will hold all R scripts (usually files ending with the ".R" extension). For a normal package, this is all of the source code that builds the package - it contains the functions that others would install the package in order to use.
 
-For the purpose of a data analysis project, this will still hold R scripts (with the ".R" extension), but the organization of scripts is different.
+In an analysis, these scripts hold the functions that are not necessary to include in the vignette for a reader to see. This improves the clarity of the vignette and puts the focus on the analysis, not the code.
 
+A new script is created by calling the 'usethis' function `use_r("filename")`.
+
+
+```r
+# create a new script to hold the `do_something()` function
+usethis::use_r("do_something")
+#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'
+#> ● Modify 'R/do_something.R'
+```
+
+I typically make a new file for every function. One common exception is to have a single "R/utilities.R" file. Also, if several functions always go together, it's often logical to keep them in the same file.
+
+Functions decalred in scripts in "R/" are documented and available from anywhere in the package. They are loaded into the global enviornment when the library is (using `library(packageName)` or `devtools::load_all()`. Thus, these functions are out of the way while you are doing your analysis, but easy to recall and use in any vignette or file.
+
+The documentation is compiled using `roxygen2::roxygenise()` called by `devtools::document()`. The formatting for documentation is covered well in Handley's [*R Packages: Object Documentation*](https://r-pkgs.org/man.html) and the basics are outline in [Chapter X. Documentation][].
 
 
 ## Other Languages

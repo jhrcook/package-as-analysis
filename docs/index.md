@@ -5,7 +5,7 @@ url: 'https\://jhrcook.github.io/package-as-analysis/'
 github-repo: jhrcook/package-as-analysis
 twitter-handle: JoshDoesa
 cover-image: cover.png
-date: "2019-04-21"
+date: "2019-04-27"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib

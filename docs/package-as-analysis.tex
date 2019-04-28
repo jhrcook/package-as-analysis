@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-04-21}
+    \date{2019-04-27}
 
 \usepackage{booktabs}
 
@@ -319,9 +319,26 @@ This topic is fully covered in \protect\hyperlink{data-management}{Chapter 2. Da
 \hypertarget{the-r-directory}{%
 \section{The R/ Directory}\label{the-r-directory}}
 
-The R directory will hold all R scripts (usually files ending with the ``.R'' extension). For a normal package, this is all of the source code that builds the package.
+The ``R/'' directory will hold all R scripts (usually files ending with the ``.R'' extension). For a normal package, this is all of the source code that builds the package - it contains the functions that others would install the package in order to use.
 
-For the purpose of a data analysis project, this will still hold R scripts (with the ``.R'' extension), but the organization of scripts is different.
+In an analysis, these scripts hold the functions that are not necessary to include in the vignette for a reader to see. This improves the clarity of the vignette and puts the focus on the analysis, not the code.
+
+A new script is created by calling the `usethis' function \texttt{use\_r("filename")}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a new script to hold the `do_something()` function}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_r}\NormalTok{(}\StringTok{"do_something"}\NormalTok{)}
+\CommentTok{#> ✔ Setting active project to '/Users/admin/Documents/R/ExampleAnalysisPackage'}
+\CommentTok{#> ● Modify 'R/do_something.R'}
+\end{Highlighting}
+\end{Shaded}
+
+I typically make a new file for every function. One common exception is to have a single ``R/utilities.R'' file. Also, if several functions always go together, it's often logical to keep them in the same file.
+
+Functions decalred in scripts in ``R/'' are documented and available from anywhere in the package. They are loaded into the global enviornment when the library is (using \texttt{library(packageName)} or \texttt{devtools::load\_all()}. Thus, these functions are out of the way while you are doing your analysis, but easy to recall and use in any vignette or file.
+
+The documentation is compiled using \texttt{roxygen2::roxygenise()} called by \texttt{devtools::document()}. The formatting for documentation is covered well in Handley's \href{https://r-pkgs.org/man.html}{\emph{R Packages: Object Documentation}} and the basics are outline in {[}Chapter X. Documentation{]}{[}{]}.
 
 \hypertarget{other-languages}{%
 \section{Other Languages}\label{other-languages}}

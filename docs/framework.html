@@ -25,7 +25,7 @@
 <meta name="author" content="Joshua H. Cook">
 
 
-<meta name="date" content="2019-04-21">
+<meta name="date" content="2019-04-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -268,8 +268,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-r-directory" class="section level2">
 <h2><span class="header-section-number">1.4</span> The R/ Directory</h2>
-<p>The R directory will hold all R scripts (usually files ending with the “.R” extension). For a normal package, this is all of the source code that builds the package.</p>
-<p>For the purpose of a data analysis project, this will still hold R scripts (with the “.R” extension), but the organization of scripts is different.</p>
+<p>The “R/” directory will hold all R scripts (usually files ending with the “.R” extension). For a normal package, this is all of the source code that builds the package - it contains the functions that others would install the package in order to use.</p>
+<p>In an analysis, these scripts hold the functions that are not necessary to include in the vignette for a reader to see. This improves the clarity of the vignette and puts the focus on the analysis, not the code.</p>
+<p>A new script is created by calling the ‘usethis’ function <code>use_r(&quot;filename&quot;)</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a new script to hold the `do_something()` function</span>
+usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;do_something&quot;</span>)
+<span class="co">#&gt; ✔ Setting active project to &#39;/Users/admin/Documents/R/ExampleAnalysisPackage&#39;</span>
+<span class="co">#&gt; ● Modify &#39;R/do_something.R&#39;</span></code></pre>
+<p>I typically make a new file for every function. One common exception is to have a single “R/utilities.R” file. Also, if several functions always go together, it’s often logical to keep them in the same file.</p>
+<p>Functions decalred in scripts in “R/” are documented and available from anywhere in the package. They are loaded into the global enviornment when the library is (using <code>library(packageName)</code> or <code>devtools::load_all()</code>. Thus, these functions are out of the way while you are doing your analysis, but easy to recall and use in any vignette or file.</p>
+<p>The documentation is compiled using <code>roxygen2::roxygenise()</code> called by <code>devtools::document()</code>. The formatting for documentation is covered well in Handley’s <a href="https://r-pkgs.org/man.html"><em>R Packages: Object Documentation</em></a> and the basics are outline in [Chapter X. Documentation][].</p>
 </div>
 <div id="other-languages" class="section level2">
 <h2><span class="header-section-number">1.5</span> Other Languages</h2>
@@ -323,7 +331,7 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -345,7 +353,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["package-as-analysis.pdf", "package-as-analysis.epub"],
+"download": [["Package as Analysis.pdf", "PDF"], ["Package as Analysis.epub", "EPUB"]],
 "toc": {
 "collapse": "subsection"
 }
